@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('考试成绩列表')" />
+    <th:block th:include="include :: header('考试类别教师关系列表')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -10,16 +10,8 @@
                 <form id="formId">
                     <div class="select-list">
                         <ul>
-                            <!--<li>
-                                <label>用户id(学生id)：</label>
-                                <input type="text" name="userId"/>
-                            </li>-->
                             <li>
-                                <label>用户姓名：</label>
-                                <input type="text" name="userName"/>
-                            </li>
-                            <li>
-                                <label>考试类别id：</label>
+                                <label>考试类别ID：</label>
                                 <input type="text" name="examId"/>
                             </li>
                             <li>
@@ -27,8 +19,12 @@
                                 <input type="text" name="examName"/>
                             </li>
                             <li>
-                                <label>考试成绩：</label>
-                                <input type="text" name="score"/>
+                                <label>教师ID：</label>
+                                <input type="text" name="userId"/>
+                            </li>
+                            <li>
+                                <label>教师姓名：</label>
+                                <input type="text" name="userName"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -40,16 +36,16 @@
             </div>
 
             <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:score:add">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:teacher:add">
                     <i class="fa fa-plus"></i> 添加
                 </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:score:edit">
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:teacher:edit">
                     <i class="fa fa-edit"></i> 修改
                 </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:score:remove">
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:teacher:remove">
                     <i class="fa fa-remove"></i> 删除
                 </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:score:export">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:teacher:export">
                     <i class="fa fa-download"></i> 导出
                 </a>
             </div>
@@ -60,9 +56,9 @@
     </div>
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
-        var editFlag = [[${@permission.hasPermi('system:score:edit')}]];
-        var removeFlag = [[${@permission.hasPermi('system:score:remove')}]];
-        var prefix = ctx + "system/score";
+        var editFlag = [[${@permission.hasPermi('system:teacher:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:teacher:remove')}]];
+        var prefix = ctx + "system/teacher";
 
         $(function() {
             var options = {
@@ -71,26 +67,30 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "考试成绩",
+                modalName: "考试类别教师关系",
                 columns: [{
                     checkbox: true
                 },
                 {
-                    field: 'scoreId',
-                    title: '考试成绩ID',
+                    field: 'connectId',
+                    title: '主键',
                     visible: false
                 },
                 {
-                    field: 'userName',
-                    title: '用户姓名'
+                    field: 'examId',
+                    title: '考试类别ID'
                 },
                 {
                     field: 'examName',
                     title: '考试名称'
                 },
                 {
-                    field: 'score',
-                    title: '考试成绩'
+                    field: 'userId',
+                    title: '教师ID'
+                },
+                {
+                    field: 'userName',
+                    title: '教师姓名'
                 },
                 {
                     field: 'updateBy',
@@ -101,16 +101,12 @@
                     title: '更新时间'
                 },
                 {
-                    field: 'remark',
-                    title: '备注'
-                },
-                {
                     title: '操作',
                     align: 'center',
                     formatter: function(value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.scoreId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.scoreId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.connectId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.connectId + '\')"><i class="fa fa-remove"></i>删除</a>');
                         return actions.join('');
                     }
                 }]

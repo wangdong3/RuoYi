@@ -2,35 +2,90 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <th:block th:include="include :: header('新增考试类别')" />
+    <th:block th:include="include :: select2-css" />
 </head>
 <body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form class="form-horizontal m" id="form-exam-add">
-            <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">考试名称：</label>
-                <div class="col-sm-8">
-                    <input name="examName" class="form-control" type="text" required>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label is-required">考试名称：</label>
+                        <div class="col-sm-8">
+                            <input name="examName" class="form-control" type="text" required>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">备注：</label>
-                <div class="col-sm-8">
-                    <textarea name="remark" class="form-control"></textarea>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">教师：</label>
+                        <div class="col-sm-8">
+                            <select id="teacher" class="form-control select2-multiple" multiple>
+                                <option th:each="teacher:${teachers}" th:value="${teacher.userId}" th:text="${teacher.userName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">适用性别：</label>
+                        <div class="col-sm-8">
+                            <select name="sex" class="form-control m-b" th:with="type=${@dict.getType('sys_user_sex')}">
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">备注：</label>
+                        <div class="col-sm-8">
+                            <textarea name="remark" class="form-control"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
     <th:block th:include="include :: footer" />
+    <th:block th:include="include :: select2-js" />
     <script th:inline="javascript">
         var prefix = ctx + "system/exam"
         $("#form-exam-add").validate({
             focusCleanup: true
         });
-
+        $(function() {
+            $('#teacher').select2({
+                placeholder: "请选择教师",
+                allowClear: true
+            });
+        });
         function submitHandler() {
             if ($.validate.form()) {
-                $.operate.save(prefix + "/add", $('#form-exam-add').serialize());
+                var data = $("#form-exam-add").serializeArray();
+                var teacherIds = $.form.selectSelects("teacher");
+                var teacherNames = getTeacherName();
+                data.push({"name": "teacherIds", "value": teacherIds});
+                data.push({"name": "teacherNames", "value": teacherNames});
+                $.operate.save(prefix + "/add", data);
             }
+        }
+        function getTeacherName() {
+            var selects = "";
+            $('#teacher option:selected').each(function (i) {
+                if (0 == i) {
+                    selects = $(this).text();
+                } else {
+                    selects += ("," + $(this).text());
+                }
+            });
+            return selects;
         }
     </script>
 </body>

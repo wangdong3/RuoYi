@@ -1,23 +1,27 @@
 package com.ruoyi.web.controller.system;
 
-import java.util.List;
+import com.ruoyi.common.annotation.Log;
+import com.ruoyi.common.core.controller.BaseController;
+import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.core.domain.entity.SysDictData;
+import com.ruoyi.common.core.domain.entity.SysUser;
+import com.ruoyi.common.core.page.TableDataInfo;
+import com.ruoyi.common.enums.BusinessType;
+import com.ruoyi.common.utils.poi.ExcelUtil;
+import com.ruoyi.system.domain.TExam;
+import com.ruoyi.system.service.ISysDictDataService;
+import com.ruoyi.system.service.ISysUserService;
+import com.ruoyi.system.service.ITExamService;
+import com.ruoyi.system.service.ITExamTeacherService;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import com.ruoyi.common.annotation.Log;
-import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.system.domain.TExam;
-import com.ruoyi.system.service.ITExamService;
-import com.ruoyi.common.core.controller.BaseController;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.utils.poi.ExcelUtil;
-import com.ruoyi.common.core.page.TableDataInfo;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 考试类别Controller
@@ -34,7 +38,15 @@ public class TExamController extends BaseController
     @Autowired
     private ITExamService tExamService;
 
-    @RequiresPermissions("system:exam:view")
+    @Autowired
+    private ISysUserService sysUserService;
+
+    @Autowired
+    private ITExamTeacherService examTeacherService;
+
+    @Autowired
+    private ISysDictDataService sysDictDataService;
+
     @GetMapping()
     public String exam()
     {
@@ -57,13 +69,24 @@ public class TExamController extends BaseController
     /**
      * 导出考试类别列表
      */
-    @RequiresPermissions("system:exam:export")
     @Log(title = "考试类别", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(TExam tExam)
     {
         List<TExam> list = tExamService.selectTExamList(tExam);
+        SysDictData sysDictData = new SysDictData();
+        sysDictData.setDictType("sys_user_sex");
+        List<SysDictData> sysDictDataList = sysDictDataService.selectDictDataList(sysDictData);
+        if(CollectionUtils.isNotEmpty(list)&&CollectionUtils.isNotEmpty(sysDictDataList)){
+            list.stream().forEach(e->{
+                sysDictDataList.stream().forEach(dict->{
+                    if(StringUtils.equals(e.getSex(),dict.getDictValue())){
+                        e.setSex(dict.getDictLabel());
+                    }
+                });
+            });
+        }
         ExcelUtil<TExam> util = new ExcelUtil<TExam>(TExam.class);
         return util.exportExcel(list, "exam");
     }
@@ -72,15 +95,15 @@ public class TExamController extends BaseController
      * 新增考试类别
      */
     @GetMapping("/add")
-    public String add()
+    public String add(ModelMap mmap)
     {
+        mmap.put("teachers", sysUserService.selectUsersByTeacherRole());
         return prefix + "/add";
     }
 
     /**
      * 新增保存考试类别
      */
-    @RequiresPermissions("system:exam:add")
     @Log(title = "考试类别", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -97,13 +120,14 @@ public class TExamController extends BaseController
     {
         TExam tExam = tExamService.selectTExamById(examId);
         mmap.put("tExam", tExam);
+        List<SysUser> allExamTeachers = examTeacherService.selectTExamTeachersWithSelected(examId);
+        mmap.put("teachers", allExamTeachers);
         return prefix + "/edit";
     }
 
     /**
      * 修改保存考试类别
      */
-    @RequiresPermissions("system:exam:edit")
     @Log(title = "考试类别", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody

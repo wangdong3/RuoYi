@@ -517,4 +517,13 @@ public class SysUserServiceImpl implements ISysUserService
     {
         return userMapper.updateUser(user);
     }
+
+    /**
+     * 根据教师角色查询教师
+     * @return
+     */
+    @Override
+    public List<SysUser> selectUsersByTeacherRole() {
+        return userMapper.selectUsersByTeacherRole();
+    }
 }

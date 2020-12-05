@@ -7,23 +7,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap type="TExam" id="TExamResult">
         <result property="examId"    column="exam_id"    />
         <result property="examName"    column="exam_name"    />
+        <result property="sex"    column="sex"    />
         <result property="createBy"    column="create_by"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateBy"    column="update_by"    />
         <result property="updateTime"    column="update_time"    />
         <result property="remark"    column="remark"    />
+        <result property="userId"    column="user_id"    />
+        <result property="userName"    column="user_name"    />
     </resultMap>
 
     <sql id="selectTExamVo">
-        select exam_id, exam_name, create_by, create_time, update_by, update_time, remark from t_exam
+        select exam_id, exam_name,sex, create_by, create_time, update_by, update_time, remark from t_exam
     </sql>
 
     <select id="selectTExamList" parameterType="TExam" resultMap="TExamResult">
-        <include refid="selectTExamVo"/>
+        select exam.*,teacher.user_id,teacher.user_name from t_exam exam
+        LEFT JOIN t_exam_teacher teacher
+        ON exam.exam_id = teacher.exam_id
         <where>  
-            <if test="examName != null  and examName != ''"> and exam_name like concat('%', #{examName}, '%')</if>
-            <if test="updateBy != null  and updateBy != ''"> and update_by = #{updateBy}</if>
-            <if test="updateTime != null "> and update_time = #{updateTime}</if>
+            <if test="examName != null  and examName != ''"> and exam.exam_name like concat('%', #{examName}, '%')</if>
+            <if test="updateBy != null  and updateBy != ''"> and exam.update_by = #{updateBy}</if>
+            <if test="sex != null  and sex != ''"> and exam.sex = #{sex}</if>
+            <if test="userName != null  and userName != ''"> and teacher.user_name like concat('%', #{userName}, '%')</if>
+            <if test="beginUpdateTime != null and beginUpdateTime != ''"> and date_format(exam.update_time,'%Y-%m-%d') &gt;= #{beginUpdateTime}</if>
+            <if test="endUpdateTime != null and endUpdateTime != ''"> and date_format(exam.update_time,'%Y-%m-%d') &lt;= #{endUpdateTime}</if>
         </where>
     </select>
     
@@ -36,6 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into t_exam
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="examName != null and examName != ''">exam_name,</if>
+            <if test="sex != null and sex != ''">sex,</if>
             <if test="createBy != null">create_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateBy != null">update_by,</if>
@@ -44,6 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="examName != null and examName != ''">#{examName},</if>
+            <if test="sex != null and sex != ''">#{sex},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -56,6 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update t_exam
         <trim prefix="SET" suffixOverrides=",">
             <if test="examName != null and examName != ''">exam_name = #{examName},</if>
+            <if test="sex != null and sex != ''">sex = #{sex},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
