@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 考试成绩对象 t_score
  * 
  * @author ruoyi
- * @date 2020-12-04
+ * @date 2020-12-05
  */
 public class TScore extends BaseEntity
 {
@@ -19,6 +19,7 @@ public class TScore extends BaseEntity
     private Long scoreId;
 
     /** 用户id(学生id) */
+    @Excel(name = "用户id(学生id)")
     private Long userId;
 
     /** 用户姓名 */
@@ -26,6 +27,7 @@ public class TScore extends BaseEntity
     private String userName;
 
     /** 考试类别id */
+    @Excel(name = "考试类别id")
     private Long examId;
 
     /** 考试名称 */
@@ -35,6 +37,14 @@ public class TScore extends BaseEntity
     /** 考试成绩 */
     @Excel(name = "考试成绩")
     private String score;
+
+    /** 学年 */
+    @Excel(name = "学年")
+    private String schoolYear;
+
+    /** 学期 */
+    @Excel(name = "学期")
+    private String semester;
 
     public void setScoreId(Long scoreId) 
     {
@@ -90,6 +100,24 @@ public class TScore extends BaseEntity
     {
         return score;
     }
+    public void setSchoolYear(String schoolYear) 
+    {
+        this.schoolYear = schoolYear;
+    }
+
+    public String getSchoolYear() 
+    {
+        return schoolYear;
+    }
+    public void setSemester(String semester) 
+    {
+        this.semester = semester;
+    }
+
+    public String getSemester() 
+    {
+        return semester;
+    }
 
     @Override
     public String toString() {
@@ -100,6 +128,8 @@ public class TScore extends BaseEntity
             .append("examId", getExamId())
             .append("examName", getExamName())
             .append("score", getScore())
+            .append("schoolYear", getSchoolYear())
+            .append("semester", getSemester())
             .append("createBy", getCreateBy())
             .append("createTime", getCreateTime())
             .append("updateBy", getUpdateBy())

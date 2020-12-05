@@ -56,7 +56,6 @@ public class TExamController extends BaseController
     /**
      * 查询考试类别列表
      */
-    @RequiresPermissions("system:exam:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(TExam tExam)

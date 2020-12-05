@@ -7,7 +7,7 @@ import com.ruoyi.system.domain.TScore;
  * 考试成绩Service接口
  * 
  * @author ruoyi
- * @date 2020-12-04
+ * @date 2020-12-05
  */
 public interface ITScoreService 
 {
@@ -58,4 +58,13 @@ public interface ITScoreService
      * @return 结果
      */
     public int deleteTScoreById(Long scoreId);
+
+    /**
+     * 查询负责的学生列表
+     * @param tScore
+     * @return
+     */
+    List<TScore> listResponsibleStudents(TScore tScore);
+
+    void insertTScoreWithTimeAndUser(TScore tScore2);
 }

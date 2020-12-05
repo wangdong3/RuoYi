@@ -2,12 +2,13 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TScore;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 考试成绩Mapper接口
  * 
  * @author ruoyi
- * @date 2020-12-04
+ * @date 2020-12-05
  */
 public interface TScoreMapper 
 {
@@ -58,4 +59,6 @@ public interface TScoreMapper
      * @return 结果
      */
     public int deleteTScoreByIds(String[] scoreIds);
+
+    List<TScore> listResponsibleStudents(TScore tScore, @Param("currentUsetId") Long currentUsetId);
 }

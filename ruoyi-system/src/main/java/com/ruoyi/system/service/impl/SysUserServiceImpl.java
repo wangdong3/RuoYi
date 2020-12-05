@@ -526,4 +526,9 @@ public class SysUserServiceImpl implements ISysUserService
     public List<SysUser> selectUsersByTeacherRole() {
         return userMapper.selectUsersByTeacherRole();
     }
+
+    @Override
+    public List<SysUser> selectStudentsUser() {
+        return userMapper.selectStudentsUser();
+    }
 }

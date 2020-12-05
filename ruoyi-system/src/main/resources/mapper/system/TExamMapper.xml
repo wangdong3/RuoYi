@@ -22,8 +22,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </sql>
 
     <select id="selectTExamList" parameterType="TExam" resultMap="TExamResult">
-        select exam.*,teacher.user_id,teacher.user_name from t_exam exam
-        LEFT JOIN t_exam_teacher teacher
+        select exam.*,teacher.user_name from t_exam exam
+        LEFT JOIN
+        (
+        select exam_id,GROUP_CONCAT(user_name) user_name FROM t_exam_teacher GROUP BY exam_id
+        ) teacher
         ON exam.exam_id = teacher.exam_id
         <where>  
             <if test="examName != null  and examName != ''"> and exam.exam_name like concat('%', #{examName}, '%')</if>

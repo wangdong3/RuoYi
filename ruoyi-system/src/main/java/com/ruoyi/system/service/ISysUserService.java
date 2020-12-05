@@ -211,4 +211,10 @@ public interface ISysUserService
      * @return
      */
     List<SysUser> selectUsersByTeacherRole();
+
+    /**
+     * 查询学生角色的用户
+     * @return
+     */
+    List<SysUser> selectStudentsUser();
 }

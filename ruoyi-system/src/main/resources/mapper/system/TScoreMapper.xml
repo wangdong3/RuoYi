@@ -11,6 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="examId"    column="exam_id"    />
         <result property="examName"    column="exam_name"    />
         <result property="score"    column="score"    />
+        <result property="schoolYear"    column="school_year"    />
+        <result property="semester"    column="semester"    />
         <result property="createBy"    column="create_by"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateBy"    column="update_by"    />
@@ -19,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectTScoreVo">
-        select score_id, user_id, user_name, exam_id, exam_name, score, create_by, create_time, update_by, update_time, remark from t_score
+        select score_id, user_id, user_name, exam_id, exam_name, score, school_year, semester, create_by, create_time, update_by, update_time, remark from t_score
     </sql>
 
     <select id="selectTScoreList" parameterType="TScore" resultMap="TScoreResult">
@@ -30,6 +32,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="examId != null "> and exam_id = #{examId}</if>
             <if test="examName != null  and examName != ''"> and exam_name like concat('%', #{examName}, '%')</if>
             <if test="score != null  and score != ''"> and score = #{score}</if>
+            <if test="schoolYear != null  and schoolYear != ''"> and school_year = #{schoolYear}</if>
+            <if test="semester != null  and semester != ''"> and semester = #{semester}</if>
+            <if test="updateBy != null  and updateBy != ''"> and update_by = #{updateBy}</if>
+            <if test="updateTime != null "> and update_time = #{updateTime}</if>
+            <if test="remark != null  and remark != ''"> and remark like concat('%', #{remark}, '%')</if>
         </where>
     </select>
     
@@ -37,7 +44,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectTScoreVo"/>
         where score_id = #{scoreId}
     </select>
-        
+    <select id="listResponsibleStudents" resultType="com.ruoyi.system.domain.TScore">
+        SELECT sc.* from t_score sc LEFT JOIN t_exam_teacher et
+        ON sc.exam_id = et.exam_id
+        <where>
+            et.user_id = ${currentUsetId}
+            <if test="userId != null "> and sc.user_id = #{userId}</if>
+            <if test="userName != null  and userName != ''"> and sc.user_name like concat('%', #{userName}, '%')</if>
+            <if test="examId != null "> and sc.exam_id = #{examId}</if>
+            <if test="examName != null  and examName != ''"> and sc.exam_name like concat('%', #{examName}, '%')</if>
+            <if test="score != null  and score != ''"> and sc.score = #{score}</if>
+            <if test="schoolYear != null  and schoolYear != ''"> and sc.school_year = #{schoolYear}</if>
+            <if test="semester != null  and semester != ''"> and sc.semester = #{semester}</if>
+            <if test="updateBy != null  and updateBy != ''"> and sc.update_by = #{updateBy}</if>
+            <if test="updateTime != null "> and sc.update_time = #{updateTime}</if>
+            <if test="remark != null  and remark != ''"> and sc.remark like concat('%', #{remark}, '%')</if>
+        </where>
+    </select>
+
     <insert id="insertTScore" parameterType="TScore" useGeneratedKeys="true" keyProperty="scoreId">
         insert into t_score
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -46,6 +70,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="examId != null">exam_id,</if>
             <if test="examName != null and examName != ''">exam_name,</if>
             <if test="score != null and score != ''">score,</if>
+            <if test="schoolYear != null">school_year,</if>
+            <if test="semester != null">semester,</if>
             <if test="createBy != null">create_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateBy != null">update_by,</if>
@@ -58,6 +84,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="examId != null">#{examId},</if>
             <if test="examName != null and examName != ''">#{examName},</if>
             <if test="score != null and score != ''">#{score},</if>
+            <if test="schoolYear != null">#{schoolYear},</if>
+            <if test="semester != null">#{semester},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -74,6 +102,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="examId != null">exam_id = #{examId},</if>
             <if test="examName != null and examName != ''">exam_name = #{examName},</if>
             <if test="score != null and score != ''">score = #{score},</if>
+            <if test="schoolYear != null">school_year = #{schoolYear},</if>
+            <if test="semester != null">semester = #{semester},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
