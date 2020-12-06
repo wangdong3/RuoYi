@@ -3,10 +3,15 @@ package com.ruoyi.web.controller.system;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
+import com.ruoyi.common.utils.ShiroUtils;
 import com.ruoyi.common.utils.poi.ExcelUtil;
+import com.ruoyi.system.domain.TExam;
 import com.ruoyi.system.domain.TScore;
+import com.ruoyi.system.service.ISysUserService;
+import com.ruoyi.system.service.ITExamService;
 import com.ruoyi.system.service.ITScoreService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +35,12 @@ public class TScoreController extends BaseController
 
     @Autowired
     private ITScoreService tScoreService;
+
+    @Autowired
+    private ITExamService examService;
+
+    @Autowired
+    private ISysUserService sysUserService;
 
     @GetMapping()
     public String score()
@@ -85,15 +96,16 @@ public class TScoreController extends BaseController
      * 新增考试成绩
      */
     @GetMapping("/add")
-    public String add()
+    public String add(ModelMap modelMap)
     {
+        List<TExam> examList = examService.selectTExamList(new TExam());
+        modelMap.put("tExam",examList);
         return prefix + "/add";
     }
 
     /**
      * 新增保存考试成绩
      */
-    @RequiresPermissions("system:score:add")
     @Log(title = "考试成绩", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -110,13 +122,19 @@ public class TScoreController extends BaseController
     {
         TScore tScore = tScoreService.selectTScoreById(scoreId);
         mmap.put("tScore", tScore);
+        SysUser sysUser = sysUserService.selectUserById(tScore.getUserId());
+        if(sysUser != null){
+            TExam exam = new TExam();
+            exam.setSex(sysUser.getSex());
+            List<TExam> examList = examService.selectTExamListBySex(exam,tScore.getExamId());
+            mmap.put("tExam", examList);
+        }
         return prefix + "/edit";
     }
 
     /**
      * 修改保存考试成绩
      */
-    @RequiresPermissions("system:score:edit")
     @Log(title = "考试成绩", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -128,7 +146,6 @@ public class TScoreController extends BaseController
     /**
      * 删除考试成绩
      */
-    @RequiresPermissions("system:score:remove")
     @Log(title = "考试成绩", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody

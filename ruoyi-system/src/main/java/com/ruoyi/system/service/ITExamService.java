@@ -58,4 +58,11 @@ public interface ITExamService
      * @return 结果
      */
     public int deleteTExamById(Long examId);
+
+    /**
+     * 根据性别查询出要体测的项目
+     * @param exam
+     * @return
+     */
+    List<TExam> selectTExamListBySex(TExam exam,Long examId);
 }

@@ -1,5 +1,6 @@
 package com.ruoyi.system.service.impl;
 
+import com.ruoyi.common.constant.SexConstants;
 import com.ruoyi.common.core.text.Convert;
 import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.ShiroUtils;
@@ -8,12 +9,16 @@ import com.ruoyi.system.domain.TExamTeacher;
 import com.ruoyi.system.mapper.TExamMapper;
 import com.ruoyi.system.mapper.TExamTeacherMapper;
 import com.ruoyi.system.service.ITExamService;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 考试类别Service业务层处理
@@ -148,5 +153,21 @@ public class TExamServiceImpl implements ITExamService
     public int deleteTExamById(Long examId)
     {
         return tExamMapper.deleteTExamById(examId);
+    }
+
+    @Override
+    public List<TExam> selectTExamListBySex(TExam exam,Long examId) {
+         List<TExam> result = Lists.newArrayList();
+        List<TExam> allExamList = tExamMapper.selectTExamList(new TExam());
+        if(CollectionUtils.isNotEmpty(allExamList)){
+            result = allExamList.stream().filter(e -> StringUtils.equalsAny(e.getSex(),exam.getSex(), SexConstants.UNKNOWN)).collect(Collectors.toList());
+            if(CollectionUtils.isNotEmpty(result)){
+                result.stream().forEach(e->{
+                    if(e.getExamId().equals(examId)){
+                        e.setSelected(true);
+                }});
+            }
+        }
+        return result;
     }
 }

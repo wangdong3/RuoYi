@@ -10,31 +10,32 @@
                 <form id="formId">
                     <div class="select-list">
                         <ul>
-                            <li>
+                            <!--<li>
                                 <label>用户id(学生id)：</label>
                                 <input type="text" name="userId"/>
-                            </li>
+                            </li>-->
                             <li>
-                                <label>用户姓名：</label>
+                                <label>学生姓名：</label>
                                 <input type="text" name="userName"/>
                             </li>
-                            <li>
+                            <!--<li>
                                 <label>考试类别id：</label>
                                 <input type="text" name="examId"/>
-                            </li>
+                            </li>-->
                             <li>
                                 <label>考试名称：</label>
                                 <input type="text" name="examName"/>
                             </li>
-                            <li>
+                            <!--<li>
                                 <label>考试成绩：</label>
                                 <input type="text" name="score"/>
-                            </li>
-                            <li class="select-time">
+                            </li>-->
+                            <li>
                                 <label>学年：</label>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginSchoolYear]"/>
-                                <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endSchoolYear]"/>
+                                <input type="text" id="schoolYear" placeholder="学年"  name="schoolYear"/>
+                                <!--<input type="year" class="time-input" id="semester" placeholder="开始时间" name="params[beginSchoolYear]"/>-->
+                                <!--<span>-</span>
+                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endSchoolYear]"/>-->
                             </li>
                             <li>
                                 <label>学期：</label>
@@ -43,7 +44,7 @@
                                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
                                 </select>
                             </li>
-                            <li>
+                            <!--<li>
                                 <label>更新者：</label>
                                 <input type="text" name="updateBy"/>
                             </li>
@@ -52,7 +53,7 @@
                                 <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginUpdateTime]"/>
                                 <span>-</span>
                                 <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endUpdateTime]"/>
-                            </li>
+                            </li>-->
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
                                 <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
@@ -63,9 +64,9 @@
             </div>
 
             <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:score:add">
+                <!--<a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:score:add">
                     <i class="fa fa-plus"></i> 添加
-                </a>
+                </a>-->
                 <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:score:edit">
                     <i class="fa fa-edit"></i> 修改
                 </a>

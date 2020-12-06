@@ -44,8 +44,8 @@ public class GenerateStudentsScores {
      * 每年的第一天生成所有的学生成绩数据
      * 根据字典表中配置的学期数生成对应的数据，即配了几个学期则生成几条数据,
      */
-//    @Scheduled(cron = "1 0 0 1 1 ? *")
-    @Scheduled(cron = "0 0/1 * * * ? ")
+    @Scheduled(cron = "1 0 0 1 1 ?")
+//    @Scheduled(cron = "0 0/1 * * * ? ")
     @Transactional(rollbackFor = Exception.class)
     private void generateStudentsScoreList(){
         //查询学生角色的用户
@@ -74,7 +74,8 @@ public class GenerateStudentsScores {
                     tScore.setExamId(exam.getExamId());
                     tScore.setExamName(exam.getExamName());
                     tScore.setUserId(sysUser.getUserId());
-                    tScore.setUserName(sysUser.getLoginName());
+                    tScore.setLoginName(sysUser.getLoginName());
+                    tScore.setUserName(sysUser.getUserName());
                     tScore.setSchoolYear(DateFormatUtils.format(new Date(),"yyyy"));
                     tScore.setUpdateTime(DateUtils.getNowDate());
                     tScore.setUpdateBy("系统生成");
@@ -93,7 +94,8 @@ public class GenerateStudentsScores {
                     tScore.setExamId(exam.getExamId());
                     tScore.setExamName(exam.getExamName());
                     tScore.setUserId(sysUser.getUserId());
-                    tScore.setUserName(sysUser.getLoginName());
+                    tScore.setLoginName(sysUser.getLoginName());
+                    tScore.setUserName(sysUser.getUserName());
                     tScore.setSchoolYear(DateFormatUtils.format(new Date(),"yyyy"));
                     tScore.setUpdateTime(DateUtils.getNowDate());
                     tScore.setUpdateBy("系统生成");

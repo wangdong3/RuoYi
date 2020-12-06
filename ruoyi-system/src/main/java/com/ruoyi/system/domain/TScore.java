@@ -1,5 +1,6 @@
 package com.ruoyi.system.domain;
 
+import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
@@ -11,6 +12,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * @author ruoyi
  * @date 2020-12-05
  */
+@Data
 public class TScore extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
@@ -19,8 +21,12 @@ public class TScore extends BaseEntity
     private Long scoreId;
 
     /** 用户id(学生id) */
-    @Excel(name = "用户id(学生id)")
+//    @Excel(name = "用户id(学生id)")
     private Long userId;
+
+    /** 学号 */
+    @Excel(name = "学号")
+    private String loginName;
 
     /** 用户姓名 */
     @Excel(name = "用户姓名")

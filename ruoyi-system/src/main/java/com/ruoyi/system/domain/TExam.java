@@ -40,6 +40,8 @@ public class TExam extends BaseEntity
 
     private Long userId;
 
+    private boolean selected;
+
     public void setExamId(Long examId) 
     {
         this.examId = examId;
