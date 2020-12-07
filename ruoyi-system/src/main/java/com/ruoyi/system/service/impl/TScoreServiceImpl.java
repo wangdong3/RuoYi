@@ -103,12 +103,25 @@ public class TScoreServiceImpl implements ITScoreService
 
     @Override
     public List<TScore> listResponsibleStudents(TScore tScore) {
-        Long currentUsetId = ShiroUtils.getUserId();
-        return tScoreMapper.listResponsibleStudents(tScore,currentUsetId);
+        Long currentUserId = ShiroUtils.getUserId();
+        tScore.setCurrentUserId(currentUserId);
+        return tScoreMapper.listResponsibleStudents(tScore);
     }
 
     @Override
     public void insertTScoreWithTimeAndUser(TScore tScore2) {
         tScoreMapper.insertTScore(tScore2);
+    }
+
+    @Override
+    public List<TScore> listUnfinishStudents(TScore tScore) {
+        return tScoreMapper.listUnfinishStudents(tScore);
+    }
+
+    @Override
+    public List<TScore> listMyScore(TScore tScore) {
+        tScore.setUserId(ShiroUtils.getUserId());
+        List<TScore> tScoreList = tScoreMapper.listMyScore(tScore);
+        return tScoreList;
     }
 }

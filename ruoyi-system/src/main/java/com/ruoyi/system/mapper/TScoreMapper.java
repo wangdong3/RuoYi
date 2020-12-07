@@ -60,5 +60,9 @@ public interface TScoreMapper
      */
     public int deleteTScoreByIds(String[] scoreIds);
 
-    List<TScore> listResponsibleStudents(TScore tScore, @Param("currentUsetId") Long currentUsetId);
+    List<TScore> listResponsibleStudents(TScore tScore);
+
+    List<TScore> listUnfinishStudents(TScore tScore);
+
+    List<TScore> listMyScore(TScore tScore);
 }

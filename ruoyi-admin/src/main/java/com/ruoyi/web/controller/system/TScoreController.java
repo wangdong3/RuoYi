@@ -6,14 +6,12 @@ import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.common.utils.ShiroUtils;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.system.domain.TExam;
 import com.ruoyi.system.domain.TScore;
 import com.ruoyi.system.service.ISysUserService;
 import com.ruoyi.system.service.ITExamService;
 import com.ruoyi.system.service.ITScoreService;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -48,10 +46,44 @@ public class TScoreController extends BaseController
         return prefix + "/score";
     }
 
+    /**
+     * 跳转到成绩录入
+     * @return
+     */
     @GetMapping("/scoreAdd")
     public String scoreAdd()
     {
         return prefix + "/scoreAdd";
+    }
+
+    /**
+     * 跳转到未体测学生查询
+     * @return
+     */
+    @GetMapping("/unfinishStudents")
+    public String unfinishStudents()
+    {
+        return prefix + "/unfinishStudents";
+    }
+
+    /**
+     * 全部学生成绩跳转
+     * @return
+     */
+    @GetMapping("/scoreAll")
+    public String allStudentsScore()
+    {
+        return prefix + "/scoreAll";
+    }
+
+    /**
+     * 学生查询个人成绩
+     * @return
+     */
+    @GetMapping("/myScore")
+    public String myScore()
+    {
+        return prefix + "/myScore";
     }
 
     /**
@@ -63,6 +95,30 @@ public class TScoreController extends BaseController
     {
         startPage();
         List<TScore> list = tScoreService.listResponsibleStudents(tScore);
+        return getDataTable(list);
+    }
+
+    /**
+     * 学生查询个人成绩列表
+     */
+    @PostMapping("/listMyScore")
+    @ResponseBody
+    public TableDataInfo listMyScore(TScore tScore)
+    {
+        startPage();
+        List<TScore> list = tScoreService.listMyScore(tScore);
+        return getDataTable(list);
+    }
+
+    /**
+     * 查询待体测学生列表
+     */
+    @PostMapping("/listUnfinishStudents")
+    @ResponseBody
+    public TableDataInfo listUnfinishStudents(TScore tScore)
+    {
+        startPage();
+        List<TScore> list = tScoreService.listUnfinishStudents(tScore);
         return getDataTable(list);
     }
 
@@ -81,7 +137,6 @@ public class TScoreController extends BaseController
     /**
      * 导出考试成绩列表
      */
-    @RequiresPermissions("system:score:export")
     @Log(title = "考试成绩", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -90,6 +145,45 @@ public class TScoreController extends BaseController
         List<TScore> list = tScoreService.selectTScoreList(tScore);
         ExcelUtil<TScore> util = new ExcelUtil<TScore>(TScore.class);
         return util.exportExcel(list, "score");
+    }
+
+    /**
+     * 导出考试成绩列表
+     */
+    @Log(title = "导出教师负责学生成绩", businessType = BusinessType.EXPORT)
+    @PostMapping("/exportResponsibleStudents")
+    @ResponseBody
+    public AjaxResult exportResponsibleStudents(TScore tScore)
+    {
+        List<TScore> list = tScoreService.listResponsibleStudents(tScore);
+        ExcelUtil<TScore> util = new ExcelUtil<TScore>(TScore.class);
+        return util.exportExcel(list, "教师负责学生成绩");
+    }
+
+    /**
+     * 导出未体测学生列表
+     */
+    @Log(title = "导出未体测学生列表", businessType = BusinessType.EXPORT)
+    @PostMapping("/exportUnfinishStudents")
+    @ResponseBody
+    public AjaxResult exportUnfinishStudents(TScore tScore)
+    {
+        List<TScore> list = tScoreService.listUnfinishStudents(tScore);
+        ExcelUtil<TScore> util = new ExcelUtil<TScore>(TScore.class);
+        return util.exportExcel(list, "待体测学生");
+    }
+
+    /**
+     * 导出我的成绩列表
+     */
+    @Log(title = "导出我的成绩列表", businessType = BusinessType.EXPORT)
+    @PostMapping("/exportMyscore")
+    @ResponseBody
+    public AjaxResult exportMyscore(TScore tScore)
+    {
+        List<TScore> list = tScoreService.listMyScore(tScore);
+        ExcelUtil<TScore> util = new ExcelUtil<TScore>(TScore.class);
+        return util.exportExcel(list, "我的成绩");
     }
 
     /**

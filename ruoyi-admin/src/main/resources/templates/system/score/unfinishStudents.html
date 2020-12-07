@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('考试成绩录入')" />
+    <th:block th:include="include :: header('全部学生成绩列表')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -95,12 +95,12 @@
 
         $(function() {
             var options = {
-                url: prefix + "/listResponsibleStudents",
+                url: prefix + "/listUnfinishStudents",
                 createUrl: prefix + "/add",
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
-                exportUrl: prefix + "/exportResponsibleStudents",
-                modalName: "考试成绩录入",
+                exportUrl: prefix + "/exportUnfinishStudents",
+                modalName: "待体测学生",
                 columns: [{
                     checkbox: true
                 },

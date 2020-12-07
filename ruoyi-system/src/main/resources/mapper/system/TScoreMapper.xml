@@ -26,8 +26,54 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </sql>
 
     <select id="selectTScoreList" parameterType="TScore" resultMap="TScoreResult">
+        select score.* FROM t_score score
+        LEFT JOIN sys_user u ON score.user_id = u.user_id
+        <where>
+            u.del_flag = '0' and u.status = '0'
+            <if test="userId != null "> and score.user_id = #{userId}</if>
+            <if test="loginName != null and loginName != '' "> and score.login_name = #{loginName}</if>
+            <if test="userName != null  and userName != ''"> and score.user_name like concat('%', #{userName}, '%')</if>
+            <if test="examId != null "> and score.exam_id = #{examId}</if>
+            <if test="examName != null  and examName != ''"> and score.exam_name like concat('%', #{examName}, '%')</if>
+            <if test="score != null  and score != ''"> and score.score = #{score}</if>
+            <if test="schoolYear != null  and schoolYear != ''"> and score.school_year = #{schoolYear}</if>
+            <if test="semester != null  and semester != ''"> and score.semester = #{semester}</if>
+            <if test="updateBy != null  and updateBy != ''"> and score.update_by = #{updateBy}</if>
+            <if test="updateTime != null "> and score.update_time = #{updateTime}</if>
+            <if test="remark != null  and remark != ''"> and score.remark like concat('%', #{remark}, '%')</if>
+            <if test="deptId != null and deptId != 0">
+                AND (u.dept_id = #{deptId} OR u.dept_id IN ( SELECT t.dept_id FROM sys_dept t WHERE FIND_IN_SET (#{deptId},ancestors) ))
+            </if>
+        </where>
+
+    </select>
+    
+    <select id="selectTScoreById" parameterType="Long" resultMap="TScoreResult">
         <include refid="selectTScoreVo"/>
-        <where>  
+        where score_id = #{scoreId}
+    </select>
+    <select id="listResponsibleStudents" resultMap="TScoreResult">
+        SELECT sc.* from t_score sc LEFT JOIN t_exam_teacher et
+        ON sc.exam_id = et.exam_id
+        <where>
+            et.user_id = ${currentUserId}
+            <if test="userId != null "> and sc.user_id = #{userId}</if>
+            <if test="loginName != null and loginName != '' "> and sc.login_name = #{loginName}</if>
+            <if test="userName != null  and userName != ''"> and sc.user_name like concat('%', #{userName}, '%')</if>
+            <if test="examId != null "> and sc.exam_id = #{examId}</if>
+            <if test="examName != null  and examName != ''"> and sc.exam_name like concat('%', #{examName}, '%')</if>
+            <if test="score != null  and score != ''"> and sc.score = #{score}</if>
+            <if test="schoolYear != null  and schoolYear != ''"> and sc.school_year = #{schoolYear}</if>
+            <if test="semester != null  and semester != ''"> and sc.semester = #{semester}</if>
+            <if test="updateBy != null  and updateBy != ''"> and sc.update_by = #{updateBy}</if>
+            <if test="updateTime != null "> and sc.update_time = #{updateTime}</if>
+            <if test="remark != null  and remark != ''"> and sc.remark like concat('%', #{remark}, '%')</if>
+        </where>
+    </select>
+    <select id="listUnfinishStudents" parameterType="TScore" resultMap="TScoreResult">
+        <include refid="selectTScoreVo"/>
+        <where>
+            coalesce(score,'') = ''
             <if test="userId != null "> and user_id = #{userId}</if>
             <if test="loginName != null and loginName != '' "> and login_name = #{loginName}</if>
             <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
@@ -41,27 +87,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="remark != null  and remark != ''"> and remark like concat('%', #{remark}, '%')</if>
         </where>
     </select>
-    
-    <select id="selectTScoreById" parameterType="Long" resultMap="TScoreResult">
+    <select id="listMyScore" parameterType="TScore" resultMap="TScoreResult">
         <include refid="selectTScoreVo"/>
-        where score_id = #{scoreId}
-    </select>
-    <select id="listResponsibleStudents" resultType="com.ruoyi.system.domain.TScore">
-        SELECT sc.* from t_score sc LEFT JOIN t_exam_teacher et
-        ON sc.exam_id = et.exam_id
         <where>
-            et.user_id = ${currentUsetId}
-            <if test="userId != null "> and sc.user_id = #{userId}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
             <if test="loginName != null and loginName != '' "> and login_name = #{loginName}</if>
-            <if test="userName != null  and userName != ''"> and sc.user_name like concat('%', #{userName}, '%')</if>
-            <if test="examId != null "> and sc.exam_id = #{examId}</if>
-            <if test="examName != null  and examName != ''"> and sc.exam_name like concat('%', #{examName}, '%')</if>
-            <if test="score != null  and score != ''"> and sc.score = #{score}</if>
-            <if test="schoolYear != null  and schoolYear != ''"> and sc.school_year = #{schoolYear}</if>
-            <if test="semester != null  and semester != ''"> and sc.semester = #{semester}</if>
-            <if test="updateBy != null  and updateBy != ''"> and sc.update_by = #{updateBy}</if>
-            <if test="updateTime != null "> and sc.update_time = #{updateTime}</if>
-            <if test="remark != null  and remark != ''"> and sc.remark like concat('%', #{remark}, '%')</if>
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="examId != null "> and exam_id = #{examId}</if>
+            <if test="examName != null  and examName != ''"> and exam_name like concat('%', #{examName}, '%')</if>
+            <if test="score != null  and score != ''"> and score = #{score}</if>
+            <if test="schoolYear != null  and schoolYear != ''"> and school_year = #{schoolYear}</if>
+            <if test="semester != null  and semester != ''"> and semester = #{semester}</if>
+            <if test="updateBy != null  and updateBy != ''"> and update_by = #{updateBy}</if>
+            <if test="updateTime != null "> and update_time = #{updateTime}</if>
+            <if test="remark != null  and remark != ''"> and remark like concat('%', #{remark}, '%')</if>
         </where>
     </select>
 
@@ -103,7 +142,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update t_score
         <trim prefix="SET" suffixOverrides=",">
             <if test="userId != null">user_id = #{userId},</if>
-            <if test="loginName != null">login_name,</if>
+            <if test="loginName != null">login_name = #{loginName},</if>
             <if test="userName != null">user_name = #{userName},</if>
             <if test="examId != null">exam_id = #{examId},</if>
             <if test="examName != null and examName != ''">exam_name = #{examName},</if>

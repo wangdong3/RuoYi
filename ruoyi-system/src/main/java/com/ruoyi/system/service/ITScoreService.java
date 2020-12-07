@@ -67,4 +67,18 @@ public interface ITScoreService
     List<TScore> listResponsibleStudents(TScore tScore);
 
     void insertTScoreWithTimeAndUser(TScore tScore2);
+
+    /**
+     * 查询待体测的学生列表
+     * @param tScore
+     * @return
+     */
+    List<TScore> listUnfinishStudents(TScore tScore);
+
+    /**
+     * 学生查询个人成绩
+     * @param tScore
+     * @return
+     */
+    List<TScore> listMyScore(TScore tScore);
 }

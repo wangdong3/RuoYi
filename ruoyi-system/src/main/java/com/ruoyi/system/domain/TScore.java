@@ -52,6 +52,16 @@ public class TScore extends BaseEntity
     @Excel(name = "学期")
     private String semester;
 
+    private Long deptId;
+
+    /** 部门父ID */
+    private Long parentId;
+
+    /**
+     * 当前登录人的id
+     */
+    private Long currentUserId;
+
     public void setScoreId(Long scoreId) 
     {
         this.scoreId = scoreId;

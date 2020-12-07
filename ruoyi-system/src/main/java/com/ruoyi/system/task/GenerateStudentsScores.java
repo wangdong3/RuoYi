@@ -47,7 +47,7 @@ public class GenerateStudentsScores {
     @Scheduled(cron = "1 0 0 1 1 ?")
 //    @Scheduled(cron = "0 0/1 * * * ? ")
     @Transactional(rollbackFor = Exception.class)
-    private void generateStudentsScoreList(){
+    public void generateStudentsScoreList(){
         //查询学生角色的用户
         List<SysUser> sysUserList = sysUserService.selectStudentsUser();
         if(CollectionUtils.isEmpty(sysUserList)){
