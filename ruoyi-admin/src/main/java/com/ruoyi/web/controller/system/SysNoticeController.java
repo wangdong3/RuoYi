@@ -43,13 +43,36 @@ public class SysNoticeController extends BaseController
     /**
      * 查询公告列表
      */
-    @RequiresPermissions("system:notice:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(SysNotice notice)
     {
         startPage();
         List<SysNotice> list = noticeService.selectNoticeList(notice);
+        return getDataTable(list);
+    }
+
+    /**
+     * 查询通知
+     */
+    @PostMapping("/listNotice")
+    @ResponseBody
+    public TableDataInfo listNotice(SysNotice notice)
+    {
+        startPage();
+        List<SysNotice> list = noticeService.listNotice(notice);
+        return getDataTable(list);
+    }
+
+    /**
+     * 查询公告
+     */
+    @PostMapping("/listAnnouncement")
+    @ResponseBody
+    public TableDataInfo listAnnouncement(SysNotice notice)
+    {
+        startPage();
+        List<SysNotice> list = noticeService.listAnnouncement(notice);
         return getDataTable(list);
     }
 

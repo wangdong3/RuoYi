@@ -49,4 +49,18 @@ public interface ISysNoticeService
      * @return 结果
      */
     public int deleteNoticeByIds(String ids);
+
+    /**
+     * 查询通知
+     * @param notice
+     * @return
+     */
+    List<SysNotice> listNotice(SysNotice notice);
+
+    /**
+     * 查询公告
+     * @param notice
+     * @return
+     */
+    List<SysNotice> listAnnouncement(SysNotice notice);
 }
