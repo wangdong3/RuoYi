@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--360浏览器优先以webkit内核解析-->
+    <title>通知公告</title>
+</head>
+
+<body class="gray-bg">
+    <div class="row  border-bottom white-bg dashboard-header">
+        <div class="col-sm-5">
+            <h2 style="text-align: center">[[*{noticeTitle}]]</h2>
+            <div id="noticeContent"></div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        $(function () {
+            var noticeContent = [[${noticeContent}]]
+            document.getElementById("noticeContent").innerHTML = noticeContent;
+        })
+    </script>
+</body>
+</html>

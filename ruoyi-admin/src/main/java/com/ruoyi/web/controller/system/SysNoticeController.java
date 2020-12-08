@@ -1,15 +1,5 @@
 package com.ruoyi.web.controller.system;
 
-import java.util.List;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
@@ -18,6 +8,13 @@ import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.ShiroUtils;
 import com.ruoyi.system.domain.SysNotice;
 import com.ruoyi.system.service.ISysNoticeService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 公告 信息操作处理
@@ -33,11 +30,21 @@ public class SysNoticeController extends BaseController
     @Autowired
     private ISysNoticeService noticeService;
 
-    @RequiresPermissions("system:notice:view")
     @GetMapping()
     public String notice()
     {
         return prefix + "/notice";
+    }
+
+    @GetMapping("detail/{noticeId}")
+    public String noticeDetail(@PathVariable("noticeId") Long noticeId,ModelMap modelMap)
+    {
+        SysNotice sysNotice = noticeService.selectNoticeById(noticeId);
+        if(null != sysNotice){
+            modelMap.put("noticeTitle",sysNotice.getNoticeTitle());
+            modelMap.put("noticeContent",sysNotice.getNoticeContent());
+        }
+        return prefix + "/noticeDetail";
     }
 
     /**

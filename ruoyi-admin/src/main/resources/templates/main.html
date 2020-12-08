@@ -33,6 +33,10 @@
             removeUrl: prefix + "/remove",
             updateUrl: prefix + "/edit/{id}",
             modalName: "通知",
+            showSearch: false,
+            showRefresh: false,
+            showToggle: false,
+            showColumns: false,
             columns: [
                 {
                     field : 'noticeId',
@@ -79,6 +83,10 @@
             removeUrl: prefix + "/remove",
             updateUrl: prefix + "/edit/{id}",
             modalName: "公告",
+            showSearch: false,
+            showRefresh: false,
+            showToggle: false,
+            showColumns: false,
             columns: [
                 {
                     field : 'noticeId',
@@ -117,9 +125,9 @@
         $.table.init(options);
     });
 
-    function detail(dictId) {
-        var url = prefix + '/detail/' + dictId;
-        $.modal.openTab("字典数据", url);
+    function detail(noticeId) {
+        var url = prefix + '/detail/' + noticeId;
+        $.modal.openTab("通知公告", url);
     }
 </script>
 </body>
