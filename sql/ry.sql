@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本机
-Source Server Version : 80022
-Source Host           : 127.0.0.1:3306
+Source Server         : 虚拟机
+Source Server Version : 50728
+Source Host           : 192.168.2.103:3306
 Source Database       : ry
 
 Target Server Type    : MYSQL
-Target Server Version : 80022
+Target Server Version : 50728
 File Encoding         : 65001
 
-Date: 2020-12-08 14:06:53
+Date: 2020-12-13 17:03:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `gen_table`;
 CREATE TABLE `gen_table` (
-  `table_id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `table_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `table_name` varchar(200) DEFAULT '' COMMENT '表名称',
   `table_comment` varchar(500) DEFAULT '' COMMENT '表描述',
   `sub_table_name` varchar(64) DEFAULT NULL COMMENT '关联子表的表名',
@@ -41,7 +41,7 @@ CREATE TABLE `gen_table` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`table_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4  COMMENT='代码生成业务表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='代码生成业务表';
 
 -- ----------------------------
 -- Records of gen_table
@@ -54,7 +54,7 @@ INSERT INTO `gen_table` VALUES ('2', 't_score', '考试成绩表', null, null, '
 -- ----------------------------
 DROP TABLE IF EXISTS `gen_table_column`;
 CREATE TABLE `gen_table_column` (
-  `column_id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `column_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `table_id` varchar(64) DEFAULT NULL COMMENT '归属表编号',
   `column_name` varchar(200) DEFAULT NULL COMMENT '列名称',
   `column_comment` varchar(500) DEFAULT NULL COMMENT '列描述',
@@ -71,13 +71,13 @@ CREATE TABLE `gen_table_column` (
   `query_type` varchar(200) DEFAULT 'EQ' COMMENT '查询方式（等于、不等于、大于、小于、范围）',
   `html_type` varchar(200) DEFAULT NULL COMMENT '显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）',
   `dict_type` varchar(200) DEFAULT '' COMMENT '字典类型',
-  `sort` int DEFAULT NULL COMMENT '排序',
+  `sort` int(11) DEFAULT NULL COMMENT '排序',
   `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`column_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4  COMMENT='代码生成业务表字段';
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COMMENT='代码生成业务表字段';
 
 -- ----------------------------
 -- Records of gen_table_column
@@ -116,7 +116,7 @@ CREATE TABLE `qrtz_blob_triggers` (
   `blob_data` blob,
   PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
   CONSTRAINT `QRTZ_BLOB_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_blob_triggers
@@ -131,7 +131,7 @@ CREATE TABLE `qrtz_calendars` (
   `calendar_name` varchar(200) NOT NULL,
   `calendar` blob NOT NULL,
   PRIMARY KEY (`sched_name`,`calendar_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_calendars
@@ -149,7 +149,7 @@ CREATE TABLE `qrtz_cron_triggers` (
   `time_zone_id` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
   CONSTRAINT `QRTZ_CRON_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_cron_triggers
@@ -168,16 +168,16 @@ CREATE TABLE `qrtz_fired_triggers` (
   `trigger_name` varchar(200) NOT NULL,
   `trigger_group` varchar(200) NOT NULL,
   `instance_name` varchar(200) NOT NULL,
-  `fired_time` bigint NOT NULL,
-  `sched_time` bigint NOT NULL,
-  `priority` int NOT NULL,
+  `fired_time` bigint(20) NOT NULL,
+  `sched_time` bigint(20) NOT NULL,
+  `priority` int(11) NOT NULL,
   `state` varchar(16) NOT NULL,
   `job_name` varchar(200) DEFAULT NULL,
   `job_group` varchar(200) DEFAULT NULL,
   `is_nonconcurrent` varchar(1) DEFAULT NULL,
   `requests_recovery` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`sched_name`,`entry_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_fired_triggers
@@ -199,7 +199,7 @@ CREATE TABLE `qrtz_job_details` (
   `requests_recovery` varchar(1) NOT NULL,
   `job_data` blob,
   PRIMARY KEY (`sched_name`,`job_name`,`job_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_job_details
@@ -216,7 +216,7 @@ CREATE TABLE `qrtz_locks` (
   `sched_name` varchar(120) NOT NULL,
   `lock_name` varchar(40) NOT NULL,
   PRIMARY KEY (`sched_name`,`lock_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_locks
@@ -232,7 +232,7 @@ CREATE TABLE `qrtz_paused_trigger_grps` (
   `sched_name` varchar(120) NOT NULL,
   `trigger_group` varchar(200) NOT NULL,
   PRIMARY KEY (`sched_name`,`trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_paused_trigger_grps
@@ -245,10 +245,10 @@ DROP TABLE IF EXISTS `qrtz_scheduler_state`;
 CREATE TABLE `qrtz_scheduler_state` (
   `sched_name` varchar(120) NOT NULL,
   `instance_name` varchar(200) NOT NULL,
-  `last_checkin_time` bigint NOT NULL,
-  `checkin_interval` bigint NOT NULL,
+  `last_checkin_time` bigint(20) NOT NULL,
+  `checkin_interval` bigint(20) NOT NULL,
   PRIMARY KEY (`sched_name`,`instance_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_scheduler_state
@@ -263,12 +263,12 @@ CREATE TABLE `qrtz_simple_triggers` (
   `sched_name` varchar(120) NOT NULL,
   `trigger_name` varchar(200) NOT NULL,
   `trigger_group` varchar(200) NOT NULL,
-  `repeat_count` bigint NOT NULL,
-  `repeat_interval` bigint NOT NULL,
-  `times_triggered` bigint NOT NULL,
+  `repeat_count` bigint(20) NOT NULL,
+  `repeat_interval` bigint(20) NOT NULL,
+  `times_triggered` bigint(20) NOT NULL,
   PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
   CONSTRAINT `QRTZ_SIMPLE_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_simple_triggers
@@ -285,17 +285,17 @@ CREATE TABLE `qrtz_simprop_triggers` (
   `str_prop_1` varchar(512) DEFAULT NULL,
   `str_prop_2` varchar(512) DEFAULT NULL,
   `str_prop_3` varchar(512) DEFAULT NULL,
-  `int_prop_1` int DEFAULT NULL,
-  `int_prop_2` int DEFAULT NULL,
-  `long_prop_1` bigint DEFAULT NULL,
-  `long_prop_2` bigint DEFAULT NULL,
+  `int_prop_1` int(11) DEFAULT NULL,
+  `int_prop_2` int(11) DEFAULT NULL,
+  `long_prop_1` bigint(20) DEFAULT NULL,
+  `long_prop_2` bigint(20) DEFAULT NULL,
   `dec_prop_1` decimal(13,4) DEFAULT NULL,
   `dec_prop_2` decimal(13,4) DEFAULT NULL,
   `bool_prop_1` varchar(1) DEFAULT NULL,
   `bool_prop_2` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
   CONSTRAINT `QRTZ_SIMPROP_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_simprop_triggers
@@ -312,20 +312,20 @@ CREATE TABLE `qrtz_triggers` (
   `job_name` varchar(200) NOT NULL,
   `job_group` varchar(200) NOT NULL,
   `description` varchar(250) DEFAULT NULL,
-  `next_fire_time` bigint DEFAULT NULL,
-  `prev_fire_time` bigint DEFAULT NULL,
-  `priority` int DEFAULT NULL,
+  `next_fire_time` bigint(20) DEFAULT NULL,
+  `prev_fire_time` bigint(20) DEFAULT NULL,
+  `priority` int(11) DEFAULT NULL,
   `trigger_state` varchar(16) NOT NULL,
   `trigger_type` varchar(8) NOT NULL,
-  `start_time` bigint NOT NULL,
-  `end_time` bigint DEFAULT NULL,
+  `start_time` bigint(20) NOT NULL,
+  `end_time` bigint(20) DEFAULT NULL,
   `calendar_name` varchar(200) DEFAULT NULL,
-  `misfire_instr` smallint DEFAULT NULL,
+  `misfire_instr` smallint(6) DEFAULT NULL,
   `job_data` blob,
   PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
   KEY `sched_name` (`sched_name`,`job_name`,`job_group`),
   CONSTRAINT `QRTZ_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `job_name`, `job_group`) REFERENCES `qrtz_job_details` (`sched_name`, `job_name`, `job_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qrtz_triggers
@@ -339,7 +339,7 @@ INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAU
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_config`;
 CREATE TABLE `sys_config` (
-  `config_id` int NOT NULL AUTO_INCREMENT COMMENT '参数主键',
+  `config_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '参数主键',
   `config_name` varchar(100) DEFAULT '' COMMENT '参数名称',
   `config_key` varchar(100) DEFAULT '' COMMENT '参数键名',
   `config_value` varchar(500) DEFAULT '' COMMENT '参数键值',
@@ -350,7 +350,7 @@ CREATE TABLE `sys_config` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`config_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4  COMMENT='参数配置表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COMMENT='参数配置表';
 
 -- ----------------------------
 -- Records of sys_config
@@ -370,11 +370,11 @@ INSERT INTO `sys_config` VALUES ('9', '主框架页-是否开启页脚', 'sys.in
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dept`;
 CREATE TABLE `sys_dept` (
-  `dept_id` bigint NOT NULL AUTO_INCREMENT COMMENT '部门id',
-  `parent_id` bigint DEFAULT '0' COMMENT '父部门id',
+  `dept_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '部门id',
+  `parent_id` bigint(20) DEFAULT '0' COMMENT '父部门id',
   `ancestors` varchar(50) DEFAULT '' COMMENT '祖级列表',
   `dept_name` varchar(30) DEFAULT '' COMMENT '部门名称',
-  `order_num` int DEFAULT '0' COMMENT '显示顺序',
+  `order_num` int(11) DEFAULT '0' COMMENT '显示顺序',
   `leader` varchar(20) DEFAULT NULL COMMENT '负责人',
   `phone` varchar(11) DEFAULT NULL COMMENT '联系电话',
   `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
@@ -385,7 +385,7 @@ CREATE TABLE `sys_dept` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`dept_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4  COMMENT='部门表';
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COMMENT='部门表';
 
 -- ----------------------------
 -- Records of sys_dept
@@ -408,8 +408,8 @@ INSERT INTO `sys_dept` VALUES ('111', '103', '0,100,101,103', '通信2班', '2',
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict_data`;
 CREATE TABLE `sys_dict_data` (
-  `dict_code` bigint NOT NULL AUTO_INCREMENT COMMENT '字典编码',
-  `dict_sort` int DEFAULT '0' COMMENT '字典排序',
+  `dict_code` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典编码',
+  `dict_sort` int(11) DEFAULT '0' COMMENT '字典排序',
   `dict_label` varchar(100) DEFAULT '' COMMENT '字典标签',
   `dict_value` varchar(100) DEFAULT '' COMMENT '字典键值',
   `dict_type` varchar(100) DEFAULT '' COMMENT '字典类型',
@@ -423,7 +423,7 @@ CREATE TABLE `sys_dict_data` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4  COMMENT='字典数据表';
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COMMENT='字典数据表';
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -465,7 +465,7 @@ INSERT INTO `sys_dict_data` VALUES ('31', '2', '第二学期', '2', 'sys_semeste
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict_type`;
 CREATE TABLE `sys_dict_type` (
-  `dict_id` bigint NOT NULL AUTO_INCREMENT COMMENT '字典主键',
+  `dict_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典主键',
   `dict_name` varchar(100) DEFAULT '' COMMENT '字典名称',
   `dict_type` varchar(100) DEFAULT '' COMMENT '字典类型',
   `status` char(1) DEFAULT '0' COMMENT '状态（0正常 1停用）',
@@ -476,7 +476,7 @@ CREATE TABLE `sys_dict_type` (
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_id`),
   UNIQUE KEY `dict_type` (`dict_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4  COMMENT='字典类型表';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='字典类型表';
 
 -- ----------------------------
 -- Records of sys_dict_type
@@ -498,7 +498,7 @@ INSERT INTO `sys_dict_type` VALUES ('11', '学期', 'sys_semester', '0', 'admin'
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_job`;
 CREATE TABLE `sys_job` (
-  `job_id` bigint NOT NULL AUTO_INCREMENT COMMENT '任务ID',
+  `job_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务ID',
   `job_name` varchar(64) NOT NULL DEFAULT '' COMMENT '任务名称',
   `job_group` varchar(64) NOT NULL DEFAULT 'DEFAULT' COMMENT '任务组名',
   `invoke_target` varchar(500) NOT NULL COMMENT '调用目标字符串',
@@ -512,7 +512,7 @@ CREATE TABLE `sys_job` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT '' COMMENT '备注信息',
   PRIMARY KEY (`job_id`,`job_name`,`job_group`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4  COMMENT='定时任务调度表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='定时任务调度表';
 
 -- ----------------------------
 -- Records of sys_job
@@ -526,7 +526,7 @@ INSERT INTO `sys_job` VALUES ('3', '系统默认（多参）', 'DEFAULT', 'ryTas
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_job_log`;
 CREATE TABLE `sys_job_log` (
-  `job_log_id` bigint NOT NULL AUTO_INCREMENT COMMENT '任务日志ID',
+  `job_log_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务日志ID',
   `job_name` varchar(64) NOT NULL COMMENT '任务名称',
   `job_group` varchar(64) NOT NULL COMMENT '任务组名',
   `invoke_target` varchar(500) NOT NULL COMMENT '调用目标字符串',
@@ -535,7 +535,7 @@ CREATE TABLE `sys_job_log` (
   `exception_info` varchar(2000) DEFAULT '' COMMENT '异常信息',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='定时任务调度日志表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='定时任务调度日志表';
 
 -- ----------------------------
 -- Records of sys_job_log
@@ -546,7 +546,7 @@ CREATE TABLE `sys_job_log` (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_logininfor`;
 CREATE TABLE `sys_logininfor` (
-  `info_id` bigint NOT NULL AUTO_INCREMENT COMMENT '访问ID',
+  `info_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '访问ID',
   `login_name` varchar(50) DEFAULT '' COMMENT '登录账号',
   `ipaddr` varchar(50) DEFAULT '' COMMENT '登录IP地址',
   `login_location` varchar(255) DEFAULT '' COMMENT '登录地点',
@@ -556,7 +556,7 @@ CREATE TABLE `sys_logininfor` (
   `msg` varchar(255) DEFAULT '' COMMENT '提示消息',
   `login_time` datetime DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=276 DEFAULT CHARSET=utf8mb4  COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=291 DEFAULT CHARSET=utf8mb4 COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -737,16 +737,31 @@ INSERT INTO `sys_logininfor` VALUES ('272', 'admin', '127.0.0.1', '内网IP', 'C
 INSERT INTO `sys_logininfor` VALUES ('273', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-08 13:47:04');
 INSERT INTO `sys_logininfor` VALUES ('274', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-08 13:55:01');
 INSERT INTO `sys_logininfor` VALUES ('275', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-08 14:03:21');
+INSERT INTO `sys_logininfor` VALUES ('276', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-13 08:02:43');
+INSERT INTO `sys_logininfor` VALUES ('277', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-13 08:02:49');
+INSERT INTO `sys_logininfor` VALUES ('278', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-13 08:05:24');
+INSERT INTO `sys_logininfor` VALUES ('279', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-13 08:07:28');
+INSERT INTO `sys_logininfor` VALUES ('280', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-13 08:28:02');
+INSERT INTO `sys_logininfor` VALUES ('281', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-13 08:41:37');
+INSERT INTO `sys_logininfor` VALUES ('282', 'student1', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '1', '密码输入错误1次', '2020-12-13 08:41:41');
+INSERT INTO `sys_logininfor` VALUES ('283', 'student1', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '1', '密码输入错误2次', '2020-12-13 08:41:44');
+INSERT INTO `sys_logininfor` VALUES ('284', 'student2', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-13 08:41:51');
+INSERT INTO `sys_logininfor` VALUES ('285', 'student2', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-13 08:42:33');
+INSERT INTO `sys_logininfor` VALUES ('286', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-13 08:51:09');
+INSERT INTO `sys_logininfor` VALUES ('287', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-13 08:55:56');
+INSERT INTO `sys_logininfor` VALUES ('288', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-13 08:56:04');
+INSERT INTO `sys_logininfor` VALUES ('289', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-13 08:56:27');
+INSERT INTO `sys_logininfor` VALUES ('290', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-13 08:56:30');
 
 -- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
-  `menu_id` bigint NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
+  `menu_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
   `menu_name` varchar(50) NOT NULL COMMENT '菜单名称',
-  `parent_id` bigint DEFAULT '0' COMMENT '父菜单ID',
-  `order_num` int DEFAULT '0' COMMENT '显示顺序',
+  `parent_id` bigint(20) DEFAULT '0' COMMENT '父菜单ID',
+  `order_num` int(11) DEFAULT '0' COMMENT '显示顺序',
   `url` varchar(200) DEFAULT '#' COMMENT '请求地址',
   `target` varchar(20) DEFAULT '' COMMENT '打开方式（menuItem页签 menuBlank新窗口）',
   `menu_type` char(1) DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
@@ -759,7 +774,7 @@ CREATE TABLE `sys_menu` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1076 DEFAULT CHARSET=utf8mb4  COMMENT='菜单权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=1086 DEFAULT CHARSET=utf8mb4 COMMENT='菜单权限表';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -849,21 +864,22 @@ INSERT INTO `sys_menu` VALUES ('1058', '生成修改', '115', '2', '#', '', 'F',
 INSERT INTO `sys_menu` VALUES ('1059', '生成删除', '115', '3', '#', '', 'F', '0', 'tool:gen:remove', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1060', '预览代码', '115', '4', '#', '', 'F', '0', 'tool:gen:preview', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1061', '生成代码', '115', '5', '#', '', 'F', '0', 'tool:gen:code', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1062', '考试类别', '1', '1', '/system/exam', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-04 13:20:44', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1063', '学生成绩录入', '1', '2', '/system/score/scoreAdd', 'menuItem', 'C', '0', '', '#', 'admin', '2020-12-04 13:21:16', 'admin', '2020-12-07 09:41:33', '');
-INSERT INTO `sys_menu` VALUES ('1070', '考试成绩新增', '1063', '1', '#', 'menuItem', 'F', '0', null, '#', 'admin', '2020-12-06 14:51:57', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1071', '考试成绩修改', '1063', '2', '#', 'menuItem', 'F', '0', 'system:score:edit', '#', 'admin', '2020-12-06 14:52:32', 'admin', '2020-12-06 14:55:33', '');
-INSERT INTO `sys_menu` VALUES ('1072', '待体测学生', '1', '4', '/system/score/unfinishStudents', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-07 10:26:03', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1073', '全部学生成绩', '1', '2', '/system/score/scoreAll', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-07 14:29:35', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1074', '我的成绩', '1', '1', '/system/score/myScore', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-07 16:11:40', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1075', '导出', '1074', '1', '#', 'menuItem', 'F', '0', 'system:score:export', '#', 'admin', '2020-12-07 16:15:58', '', null, '');
+INSERT INTO `sys_menu` VALUES ('1076', '成绩管理', '0', '4', '#', 'menuItem', 'M', '0', null, '#', 'admin', '2020-12-13 08:06:18', '', null, '');
+INSERT INTO `sys_menu` VALUES ('1077', '考试类别', '1076', '1', '/system/exam', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-13 08:08:47', '', null, '');
+INSERT INTO `sys_menu` VALUES ('1078', '考试成绩录入', '1076', '2', '/system/score/scoreAdd', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-13 08:10:47', '', null, '');
+INSERT INTO `sys_menu` VALUES ('1079', '考试成绩新增', '1078', '1', '#', 'menuItem', 'F', '0', null, '#', 'admin', '2020-12-13 08:11:04', '', null, '');
+INSERT INTO `sys_menu` VALUES ('1081', '全部学生成绩', '1076', '3', '/system/score/scoreAll', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-13 08:12:08', '', null, '');
+INSERT INTO `sys_menu` VALUES ('1082', '待体测学生', '1076', '4', '/system/score/unfinishStudents', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-13 08:13:03', '', null, '');
+INSERT INTO `sys_menu` VALUES ('1083', '考试成绩修改', '1078', '2', '#', 'menuItem', 'F', '0', 'system:score:edit', '#', 'admin', '2020-12-13 08:14:40', '', null, '');
+INSERT INTO `sys_menu` VALUES ('1084', '我的成绩', '1076', '5', '/system/score/myScore', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-13 08:16:03', '', null, '');
+INSERT INTO `sys_menu` VALUES ('1085', '导出', '1084', '1', '#', 'menuItem', 'F', '0', 'system:score:export', '#', 'admin', '2020-12-13 08:53:29', '', null, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_notice`;
 CREATE TABLE `sys_notice` (
-  `notice_id` int NOT NULL AUTO_INCREMENT COMMENT '公告ID',
+  `notice_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '公告ID',
   `notice_title` varchar(50) NOT NULL COMMENT '公告标题',
   `notice_type` char(1) NOT NULL COMMENT '公告类型（1通知 2公告）',
   `notice_content` varchar(2000) DEFAULT NULL COMMENT '公告内容',
@@ -874,7 +890,7 @@ CREATE TABLE `sys_notice` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`notice_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4  COMMENT='通知公告表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='通知公告表';
 
 -- ----------------------------
 -- Records of sys_notice
@@ -889,12 +905,12 @@ INSERT INTO `sys_notice` VALUES ('4', '测试在哪显示啊哈哈哈', '2', '<p
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_oper_log`;
 CREATE TABLE `sys_oper_log` (
-  `oper_id` bigint NOT NULL AUTO_INCREMENT COMMENT '日志主键',
+  `oper_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '日志主键',
   `title` varchar(50) DEFAULT '' COMMENT '模块标题',
-  `business_type` int DEFAULT '0' COMMENT '业务类型（0其它 1新增 2修改 3删除）',
+  `business_type` int(11) DEFAULT '0' COMMENT '业务类型（0其它 1新增 2修改 3删除）',
   `method` varchar(100) DEFAULT '' COMMENT '方法名称',
   `request_method` varchar(10) DEFAULT '' COMMENT '请求方式',
-  `operator_type` int DEFAULT '0' COMMENT '操作类别（0其它 1后台用户 2手机端用户）',
+  `operator_type` int(11) DEFAULT '0' COMMENT '操作类别（0其它 1后台用户 2手机端用户）',
   `oper_name` varchar(50) DEFAULT '' COMMENT '操作人员',
   `dept_name` varchar(50) DEFAULT '' COMMENT '部门名称',
   `oper_url` varchar(255) DEFAULT '' COMMENT '请求URL',
@@ -902,11 +918,11 @@ CREATE TABLE `sys_oper_log` (
   `oper_location` varchar(255) DEFAULT '' COMMENT '操作地点',
   `oper_param` varchar(2000) DEFAULT '' COMMENT '请求参数',
   `json_result` varchar(2000) DEFAULT '' COMMENT '返回参数',
-  `status` int DEFAULT '0' COMMENT '操作状态（0正常 1异常）',
+  `status` int(11) DEFAULT '0' COMMENT '操作状态（0正常 1异常）',
   `error_msg` varchar(2000) DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4  COMMENT='操作日志记录';
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志记录';
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -1012,16 +1028,39 @@ INSERT INTO `sys_oper_log` VALUES ('98', '菜单管理', '1', 'com.ruoyi.web.con
 INSERT INTO `sys_oper_log` VALUES ('99', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"4\"],\"roleName\":[\"学生\"],\"roleKey\":[\"student\"],\"roleSort\":[\"4\"],\"status\":[\"0\"],\"remark\":[\"\"],\"menuIds\":[\"1,1074\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-07 16:14:56');
 INSERT INTO `sys_oper_log` VALUES ('100', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"1074\"],\"menuType\":[\"F\"],\"menuName\":[\"导出\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"system:score:export\"],\"orderNum\":[\"1\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-07 16:15:58');
 INSERT INTO `sys_oper_log` VALUES ('101', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"4\"],\"roleName\":[\"学生\"],\"roleKey\":[\"student\"],\"roleSort\":[\"4\"],\"status\":[\"0\"],\"remark\":[\"\"],\"menuIds\":[\"1,1074,1075\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-07 16:16:24');
+INSERT INTO `sys_oper_log` VALUES ('102', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"0\"],\"menuType\":[\"M\"],\"menuName\":[\"成绩管理\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"4\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:06:19');
+INSERT INTO `sys_oper_log` VALUES ('103', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"1076\"],\"menuType\":[\"C\"],\"menuName\":[\"考试类别\"],\"url\":[\"/system/exam\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"1\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:08:47');
+INSERT INTO `sys_oper_log` VALUES ('104', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"1076\"],\"menuType\":[\"C\"],\"menuName\":[\"考试成绩录入\"],\"url\":[\"/system/score/scoreAdd\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"2\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:10:47');
+INSERT INTO `sys_oper_log` VALUES ('105', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"1078\"],\"menuType\":[\"F\"],\"menuName\":[\"考试成绩新增\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"1\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:11:04');
+INSERT INTO `sys_oper_log` VALUES ('106', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"1079\"],\"menuType\":[\"F\"],\"menuName\":[\"考试成绩修改\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"system:score:edit\"],\"orderNum\":[\"2\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:11:26');
+INSERT INTO `sys_oper_log` VALUES ('107', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"1076\"],\"menuType\":[\"C\"],\"menuName\":[\"全部学生成绩\"],\"url\":[\"/system/score/scoreAll\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"3\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:12:08');
+INSERT INTO `sys_oper_log` VALUES ('108', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"1076\"],\"menuType\":[\"C\"],\"menuName\":[\"待体测学生\"],\"url\":[\"/system/score/unfinishStudents\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"4\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:13:03');
+INSERT INTO `sys_oper_log` VALUES ('109', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1080', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:13:50');
+INSERT INTO `sys_oper_log` VALUES ('110', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"1078\"],\"menuType\":[\"F\"],\"menuName\":[\"考试成绩修改\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"system:score:edit\"],\"orderNum\":[\"2\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:14:40');
+INSERT INTO `sys_oper_log` VALUES ('111', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"3\"],\"roleName\":[\"教师\"],\"roleKey\":[\"system:score:*\"],\"roleSort\":[\"3\"],\"status\":[\"0\"],\"remark\":[\"\"],\"menuIds\":[\"1,1063,1071,1073,1072,1076,1078,1083,1081,1082\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:15:09');
+INSERT INTO `sys_oper_log` VALUES ('112', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"1076\"],\"menuType\":[\"C\"],\"menuName\":[\"我的成绩\"],\"url\":[\"/system/score/myScore\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"5\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:16:03');
+INSERT INTO `sys_oper_log` VALUES ('113', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"4\"],\"roleName\":[\"学生\"],\"roleKey\":[\"student\"],\"roleSort\":[\"4\"],\"status\":[\"0\"],\"remark\":[\"\"],\"menuIds\":[\"1076,1084\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:16:20');
+INSERT INTO `sys_oper_log` VALUES ('114', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"3\"],\"roleName\":[\"教师\"],\"roleKey\":[\"system:score:*\"],\"roleSort\":[\"3\"],\"status\":[\"0\"],\"remark\":[\"\"],\"menuIds\":[\"1076,1078,1083,1081,1082\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:16:34');
+INSERT INTO `sys_oper_log` VALUES ('115', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1062', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:52:40');
+INSERT INTO `sys_oper_log` VALUES ('116', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1074', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"存在子菜单,不允许删除\",\r\n  \"code\" : 301\r\n}', '0', null, '2020-12-13 08:52:46');
+INSERT INTO `sys_oper_log` VALUES ('117', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '大一', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"1084\"],\"menuType\":[\"F\"],\"menuName\":[\"导出\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"system:score:export\"],\"orderNum\":[\"1\"],\"icon\":[\"\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:53:29');
+INSERT INTO `sys_oper_log` VALUES ('118', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1075', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:54:01');
+INSERT INTO `sys_oper_log` VALUES ('119', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1074', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:54:07');
+INSERT INTO `sys_oper_log` VALUES ('120', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1070', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:54:14');
+INSERT INTO `sys_oper_log` VALUES ('121', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1071', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:54:21');
+INSERT INTO `sys_oper_log` VALUES ('122', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1063', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:54:27');
+INSERT INTO `sys_oper_log` VALUES ('123', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1073', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:54:32');
+INSERT INTO `sys_oper_log` VALUES ('124', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1072', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:54:37');
 
 -- ----------------------------
 -- Table structure for sys_post
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_post`;
 CREATE TABLE `sys_post` (
-  `post_id` bigint NOT NULL AUTO_INCREMENT COMMENT '岗位ID',
+  `post_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '岗位ID',
   `post_code` varchar(64) NOT NULL COMMENT '岗位编码',
   `post_name` varchar(50) NOT NULL COMMENT '岗位名称',
-  `post_sort` int NOT NULL COMMENT '显示顺序',
+  `post_sort` int(11) NOT NULL COMMENT '显示顺序',
   `status` char(1) NOT NULL COMMENT '状态（0正常 1停用）',
   `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
@@ -1029,7 +1068,7 @@ CREATE TABLE `sys_post` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4  COMMENT='岗位信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='岗位信息表';
 
 -- ----------------------------
 -- Records of sys_post
@@ -1044,10 +1083,10 @@ INSERT INTO `sys_post` VALUES ('4', 'user', '普通员工', '4', '0', 'admin', '
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
-  `role_id` bigint NOT NULL AUTO_INCREMENT COMMENT '角色ID',
+  `role_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
   `role_name` varchar(30) NOT NULL COMMENT '角色名称',
   `role_key` varchar(100) NOT NULL COMMENT '角色权限字符串',
-  `role_sort` int NOT NULL COMMENT '显示顺序',
+  `role_sort` int(11) NOT NULL COMMENT '显示顺序',
   `data_scope` char(1) DEFAULT '1' COMMENT '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）',
   `status` char(1) NOT NULL COMMENT '角色状态（0正常 1停用）',
   `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
@@ -1057,25 +1096,25 @@ CREATE TABLE `sys_role` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4  COMMENT='角色信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='角色信息表';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '超级管理员', 'admin', '1', '1', '0', '0', 'admin', '2020-12-03 14:10:39', '', null, '超级管理员');
 INSERT INTO `sys_role` VALUES ('2', '普通角色', 'common', '2', '2', '0', '0', 'admin', '2020-12-03 14:10:39', '', null, '普通角色');
-INSERT INTO `sys_role` VALUES ('3', '教师', 'system:score:*', '3', '1', '0', '0', 'admin', '2020-12-04 13:23:27', 'admin', '2020-12-07 14:29:47', '');
-INSERT INTO `sys_role` VALUES ('4', '学生', 'student', '4', '1', '0', '0', 'admin', '2020-12-05 06:48:03', 'admin', '2020-12-07 16:16:24', '');
+INSERT INTO `sys_role` VALUES ('3', '教师', 'system:score:*', '3', '1', '0', '0', 'admin', '2020-12-04 13:23:27', 'admin', '2020-12-13 08:16:34', '');
+INSERT INTO `sys_role` VALUES ('4', '学生', 'student', '4', '1', '0', '0', 'admin', '2020-12-05 06:48:03', 'admin', '2020-12-13 08:16:20', '');
 
 -- ----------------------------
 -- Table structure for sys_role_dept
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_dept`;
 CREATE TABLE `sys_role_dept` (
-  `role_id` bigint NOT NULL COMMENT '角色ID',
-  `dept_id` bigint NOT NULL COMMENT '部门ID',
+  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+  `dept_id` bigint(20) NOT NULL COMMENT '部门ID',
   PRIMARY KEY (`role_id`,`dept_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='角色和部门关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色和部门关联表';
 
 -- ----------------------------
 -- Records of sys_role_dept
@@ -1089,10 +1128,10 @@ INSERT INTO `sys_role_dept` VALUES ('2', '105');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu` (
-  `role_id` bigint NOT NULL COMMENT '角色ID',
-  `menu_id` bigint NOT NULL COMMENT '菜单ID',
+  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+  `menu_id` bigint(20) NOT NULL COMMENT '菜单ID',
   PRIMARY KEY (`role_id`,`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='角色和菜单关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色和菜单关联表';
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -1182,22 +1221,21 @@ INSERT INTO `sys_role_menu` VALUES ('2', '1058');
 INSERT INTO `sys_role_menu` VALUES ('2', '1059');
 INSERT INTO `sys_role_menu` VALUES ('2', '1060');
 INSERT INTO `sys_role_menu` VALUES ('2', '1061');
-INSERT INTO `sys_role_menu` VALUES ('3', '1');
-INSERT INTO `sys_role_menu` VALUES ('3', '1063');
-INSERT INTO `sys_role_menu` VALUES ('3', '1071');
-INSERT INTO `sys_role_menu` VALUES ('3', '1072');
-INSERT INTO `sys_role_menu` VALUES ('3', '1073');
-INSERT INTO `sys_role_menu` VALUES ('4', '1');
-INSERT INTO `sys_role_menu` VALUES ('4', '1074');
-INSERT INTO `sys_role_menu` VALUES ('4', '1075');
+INSERT INTO `sys_role_menu` VALUES ('3', '1076');
+INSERT INTO `sys_role_menu` VALUES ('3', '1078');
+INSERT INTO `sys_role_menu` VALUES ('3', '1081');
+INSERT INTO `sys_role_menu` VALUES ('3', '1082');
+INSERT INTO `sys_role_menu` VALUES ('3', '1083');
+INSERT INTO `sys_role_menu` VALUES ('4', '1076');
+INSERT INTO `sys_role_menu` VALUES ('4', '1084');
 
 -- ----------------------------
 -- Table structure for sys_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
-  `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  `dept_id` bigint DEFAULT NULL COMMENT '部门ID',
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `dept_id` bigint(20) DEFAULT NULL COMMENT '部门ID',
   `login_name` varchar(30) NOT NULL COMMENT '登录账号',
   `user_name` varchar(30) DEFAULT '' COMMENT '用户昵称',
   `user_type` varchar(2) DEFAULT '00' COMMENT '用户类型（00系统用户 01注册用户）',
@@ -1218,17 +1256,17 @@ CREATE TABLE `sys_user` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4  COMMENT='用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='用户信息表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-12-08 14:03:21', '2020-12-03 14:10:38', 'admin', '2020-12-03 14:10:38', '', '2020-12-08 14:03:21', '管理员');
+INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '系统管理员', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-12-13 16:56:31', '2020-12-03 14:10:38', 'admin', '2020-12-03 14:10:38', '', '2020-12-13 08:56:30', '管理员');
 INSERT INTO `sys_user` VALUES ('2', '105', 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '8e6d98b90472783cc73c17047ddccf36', '222222', '0', '0', '127.0.0.1', '2020-12-03 14:10:38', '2020-12-03 14:10:38', 'admin', '2020-12-03 14:10:38', '', null, '测试员');
 INSERT INTO `sys_user` VALUES ('3', null, 'male', '男老师', '00', '', '', '0', '', 'e9ea4f438fee5dab8e48f8d21baa1d61', '00693b', '0', '0', '127.0.0.1', '2020-12-04 21:29:46', null, 'admin', '2020-12-04 13:24:00', 'admin', '2020-12-04 15:55:12', '');
-INSERT INTO `sys_user` VALUES ('4', null, 'female', '女老师', '00', '', '', '1', '', '61ec7e2bfb48c9f469ff09c946cfd459', 'f10a3d', '0', '0', '127.0.0.1', '2020-12-07 17:56:04', null, 'admin', '2020-12-05 06:20:34', '', '2020-12-07 17:56:04', null);
+INSERT INTO `sys_user` VALUES ('4', null, 'female', '女老师', '00', '', '', '1', '', '61ec7e2bfb48c9f469ff09c946cfd459', 'f10a3d', '0', '0', '127.0.0.1', '2020-12-13 16:56:05', null, 'admin', '2020-12-05 06:20:34', '', '2020-12-13 08:56:04', null);
 INSERT INTO `sys_user` VALUES ('5', '110', 'student1', '男学生', '00', '', '', '0', '', 'e2311e77e5fe2695c908aca54a9decb5', '3bfac4', '0', '0', '127.0.0.1', '2020-12-07 16:15:06', null, 'admin', '2020-12-05 06:49:36', 'admin', '2020-12-07 16:15:06', '');
-INSERT INTO `sys_user` VALUES ('6', '110', 'student2', '女同学', '00', '', '', '1', '', '494510fc2458813babf786ce2809b314', '731520', '0', '0', '127.0.0.1', '2020-12-07 17:35:55', null, 'admin', '2020-12-05 07:55:29', 'admin', '2020-12-07 17:35:54', '');
+INSERT INTO `sys_user` VALUES ('6', '110', 'student2', '女同学', '00', '', '', '1', '', '494510fc2458813babf786ce2809b314', '731520', '0', '0', '127.0.0.1', '2020-12-13 16:41:53', null, 'admin', '2020-12-05 07:55:29', 'admin', '2020-12-13 08:41:51', '');
 
 -- ----------------------------
 -- Table structure for sys_user_online
@@ -1245,24 +1283,24 @@ CREATE TABLE `sys_user_online` (
   `status` varchar(10) DEFAULT '' COMMENT '在线状态on_line在线off_line离线',
   `start_timestamp` datetime DEFAULT NULL COMMENT 'session创建时间',
   `last_access_time` datetime DEFAULT NULL COMMENT 'session最后访问时间',
-  `expire_time` int DEFAULT '0' COMMENT '超时时间，单位为分钟',
+  `expire_time` int(11) DEFAULT '0' COMMENT '超时时间，单位为分钟',
   PRIMARY KEY (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='在线用户记录';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='在线用户记录';
 
 -- ----------------------------
 -- Records of sys_user_online
 -- ----------------------------
-INSERT INTO `sys_user_online` VALUES ('b20dd07f-5695-4484-8ebf-5f37e0968d84', 'admin', '大一', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', 'on_line', '2020-12-08 13:39:36', '2020-12-08 14:03:21', '1800000');
+INSERT INTO `sys_user_online` VALUES ('d7dcf3de-50d7-444d-9281-dfdd5e57661d', 'admin', '大一', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', 'on_line', '2020-12-13 16:56:29', '2020-12-13 16:56:31', '1800000');
 
 -- ----------------------------
 -- Table structure for sys_user_post
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_post`;
 CREATE TABLE `sys_user_post` (
-  `user_id` bigint NOT NULL COMMENT '用户ID',
-  `post_id` bigint NOT NULL COMMENT '岗位ID',
+  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
+  `post_id` bigint(20) NOT NULL COMMENT '岗位ID',
   PRIMARY KEY (`user_id`,`post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='用户与岗位关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户与岗位关联表';
 
 -- ----------------------------
 -- Records of sys_user_post
@@ -1275,10 +1313,10 @@ INSERT INTO `sys_user_post` VALUES ('2', '2');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
-  `user_id` bigint NOT NULL COMMENT '用户ID',
-  `role_id` bigint NOT NULL COMMENT '角色ID',
+  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
+  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
   PRIMARY KEY (`user_id`,`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='用户和角色关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户和角色关联表';
 
 -- ----------------------------
 -- Records of sys_user_role
@@ -1295,7 +1333,7 @@ INSERT INTO `sys_user_role` VALUES ('6', '4');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_exam`;
 CREATE TABLE `t_exam` (
-  `exam_id` bigint NOT NULL AUTO_INCREMENT COMMENT '考试类别ID',
+  `exam_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '考试类别ID',
   `exam_name` varchar(30) NOT NULL COMMENT '考试名称',
   `sex` varchar(255) DEFAULT '0' COMMENT '适用性别（0男 1女 2未知）',
   `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
@@ -1304,7 +1342,7 @@ CREATE TABLE `t_exam` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`exam_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4  COMMENT='考试类别表';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COMMENT='考试类别表';
 
 -- ----------------------------
 -- Records of t_exam
@@ -1325,17 +1363,17 @@ INSERT INTO `t_exam` VALUES ('18', '坐位体前屈', '2', 'admin', '2020-12-05 
 -- ----------------------------
 DROP TABLE IF EXISTS `t_exam_teacher`;
 CREATE TABLE `t_exam_teacher` (
-  `connect_id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `exam_id` bigint NOT NULL COMMENT '考试类别ID',
+  `connect_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `exam_id` bigint(20) NOT NULL COMMENT '考试类别ID',
   `exam_name` varchar(60) DEFAULT NULL COMMENT '考试名称',
-  `user_id` bigint NOT NULL COMMENT '教师ID',
+  `user_id` bigint(20) NOT NULL COMMENT '教师ID',
   `user_name` varchar(60) DEFAULT NULL COMMENT '教师姓名',
   `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`connect_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4  COMMENT='考试类别教师关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COMMENT='考试类别教师关系表';
 
 -- ----------------------------
 -- Records of t_exam_teacher
@@ -1351,11 +1389,11 @@ INSERT INTO `t_exam_teacher` VALUES ('18', '12', '1000米', '4', '女老师', 'a
 -- ----------------------------
 DROP TABLE IF EXISTS `t_score`;
 CREATE TABLE `t_score` (
-  `score_id` bigint NOT NULL AUTO_INCREMENT COMMENT '考试成绩ID',
-  `user_id` bigint DEFAULT NULL COMMENT '用户id(学生id)',
+  `score_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '考试成绩ID',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id(学生id)',
   `login_name` varchar(255) DEFAULT NULL COMMENT '登录账号',
   `user_name` varchar(30) DEFAULT '' COMMENT '用户姓名',
-  `exam_id` bigint DEFAULT NULL COMMENT '考试类别id',
+  `exam_id` bigint(20) DEFAULT NULL COMMENT '考试类别id',
   `exam_name` varchar(30) DEFAULT NULL COMMENT '考试名称',
   `score` varchar(30) DEFAULT NULL COMMENT '考试成绩',
   `school_year` varchar(90) DEFAULT NULL COMMENT '学年',
@@ -1366,7 +1404,7 @@ CREATE TABLE `t_score` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`score_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=835 DEFAULT CHARSET=utf8mb4  COMMENT='考试成绩表';
+) ENGINE=InnoDB AUTO_INCREMENT=835 DEFAULT CHARSET=utf8mb4 COMMENT='考试成绩表';
 
 -- ----------------------------
 -- Records of t_score
