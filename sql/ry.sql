@@ -10,329 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50728
 File Encoding         : 65001
 
-Date: 2020-12-13 17:03:10
+Date: 2020-12-19 21:10:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for gen_table
--- ----------------------------
-DROP TABLE IF EXISTS `gen_table`;
-CREATE TABLE `gen_table` (
-  `table_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `table_name` varchar(200) DEFAULT '' COMMENT '表名称',
-  `table_comment` varchar(500) DEFAULT '' COMMENT '表描述',
-  `sub_table_name` varchar(64) DEFAULT NULL COMMENT '关联子表的表名',
-  `sub_table_fk_name` varchar(64) DEFAULT NULL COMMENT '子表关联的外键名',
-  `class_name` varchar(100) DEFAULT '' COMMENT '实体类名称',
-  `tpl_category` varchar(200) DEFAULT 'crud' COMMENT '使用的模板（crud单表操作 tree树表操作 sub主子表操作）',
-  `package_name` varchar(100) DEFAULT NULL COMMENT '生成包路径',
-  `module_name` varchar(30) DEFAULT NULL COMMENT '生成模块名',
-  `business_name` varchar(30) DEFAULT NULL COMMENT '生成业务名',
-  `function_name` varchar(50) DEFAULT NULL COMMENT '生成功能名',
-  `function_author` varchar(50) DEFAULT NULL COMMENT '生成功能作者',
-  `gen_type` char(1) DEFAULT '0' COMMENT '生成代码方式（0zip压缩包 1自定义路径）',
-  `gen_path` varchar(200) DEFAULT '/' COMMENT '生成路径（不填默认项目路径）',
-  `options` varchar(1000) DEFAULT NULL COMMENT '其它生成选项',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`table_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='代码生成业务表';
-
--- ----------------------------
--- Records of gen_table
--- ----------------------------
-INSERT INTO `gen_table` VALUES ('1', 't_exam_teacher', '考试类别教师关系表', null, null, 'TExamTeacher', 'crud', 'com.ruoyi.system', 'system', 'teacher', '考试类别教师关系', 'ruoyi', '0', '/', '{\"parentMenuId\":\"\",\"treeName\":\"\",\"treeParentCode\":\"\",\"parentMenuName\":\"\",\"treeCode\":\"\"}', 'admin', '2020-12-04 13:14:57', '', '2020-12-04 13:16:05', '');
-INSERT INTO `gen_table` VALUES ('2', 't_score', '考试成绩表', null, null, 'TScore', 'crud', 'com.ruoyi.system', 'system', 'score', '考试成绩', 'ruoyi', '0', '/', '{\"parentMenuId\":\"\",\"treeName\":\"\",\"treeParentCode\":\"\",\"parentMenuName\":\"\",\"treeCode\":\"\"}', 'admin', '2020-12-05 07:06:22', '', '2020-12-05 07:10:45', '');
-
--- ----------------------------
--- Table structure for gen_table_column
--- ----------------------------
-DROP TABLE IF EXISTS `gen_table_column`;
-CREATE TABLE `gen_table_column` (
-  `column_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `table_id` varchar(64) DEFAULT NULL COMMENT '归属表编号',
-  `column_name` varchar(200) DEFAULT NULL COMMENT '列名称',
-  `column_comment` varchar(500) DEFAULT NULL COMMENT '列描述',
-  `column_type` varchar(100) DEFAULT NULL COMMENT '列类型',
-  `java_type` varchar(500) DEFAULT NULL COMMENT 'JAVA类型',
-  `java_field` varchar(200) DEFAULT NULL COMMENT 'JAVA字段名',
-  `is_pk` char(1) DEFAULT NULL COMMENT '是否主键（1是）',
-  `is_increment` char(1) DEFAULT NULL COMMENT '是否自增（1是）',
-  `is_required` char(1) DEFAULT NULL COMMENT '是否必填（1是）',
-  `is_insert` char(1) DEFAULT NULL COMMENT '是否为插入字段（1是）',
-  `is_edit` char(1) DEFAULT NULL COMMENT '是否编辑字段（1是）',
-  `is_list` char(1) DEFAULT NULL COMMENT '是否列表字段（1是）',
-  `is_query` char(1) DEFAULT NULL COMMENT '是否查询字段（1是）',
-  `query_type` varchar(200) DEFAULT 'EQ' COMMENT '查询方式（等于、不等于、大于、小于、范围）',
-  `html_type` varchar(200) DEFAULT NULL COMMENT '显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）',
-  `dict_type` varchar(200) DEFAULT '' COMMENT '字典类型',
-  `sort` int(11) DEFAULT NULL COMMENT '排序',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`column_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COMMENT='代码生成业务表字段';
-
--- ----------------------------
--- Records of gen_table_column
--- ----------------------------
-INSERT INTO `gen_table_column` VALUES ('1', '1', 'connect_id', '主键', 'bigint(20)', 'Long', 'connectId', '1', '1', null, '1', null, null, null, 'EQ', 'input', '', '1', 'admin', '2020-12-04 13:14:57', null, '2020-12-04 13:16:05');
-INSERT INTO `gen_table_column` VALUES ('2', '1', 'exam_id', '考试类别ID', 'bigint(20)', 'Long', 'examId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', '2', 'admin', '2020-12-04 13:14:57', null, '2020-12-04 13:16:05');
-INSERT INTO `gen_table_column` VALUES ('3', '1', 'exam_name', '考试名称', 'varchar(60)', 'String', 'examName', '0', '0', null, '1', '1', '1', '1', 'LIKE', 'input', '', '3', 'admin', '2020-12-04 13:14:57', null, '2020-12-04 13:16:05');
-INSERT INTO `gen_table_column` VALUES ('4', '1', 'user_id', '教师ID', 'bigint(20)', 'Long', 'userId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', '4', 'admin', '2020-12-04 13:14:57', null, '2020-12-04 13:16:05');
-INSERT INTO `gen_table_column` VALUES ('5', '1', 'user_name', '教师姓名', 'varchar(60)', 'String', 'userName', '0', '0', null, '1', '1', '1', '1', 'LIKE', 'input', '', '5', 'admin', '2020-12-04 13:14:57', null, '2020-12-04 13:16:05');
-INSERT INTO `gen_table_column` VALUES ('6', '1', 'create_by', '创建者', 'varchar(64)', 'String', 'createBy', '0', '0', null, '1', null, null, null, 'EQ', 'input', '', '6', 'admin', '2020-12-04 13:14:57', null, '2020-12-04 13:16:05');
-INSERT INTO `gen_table_column` VALUES ('7', '1', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', null, '1', null, null, null, 'EQ', 'datetime', '', '7', 'admin', '2020-12-04 13:14:57', null, '2020-12-04 13:16:05');
-INSERT INTO `gen_table_column` VALUES ('8', '1', 'update_by', '更新者', 'varchar(64)', 'String', 'updateBy', '0', '0', null, '1', null, '1', null, 'EQ', 'input', '', '8', 'admin', '2020-12-04 13:14:57', null, '2020-12-04 13:16:05');
-INSERT INTO `gen_table_column` VALUES ('9', '1', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', null, '1', null, '1', null, 'EQ', 'datetime', '', '9', 'admin', '2020-12-04 13:14:57', null, '2020-12-04 13:16:05');
-INSERT INTO `gen_table_column` VALUES ('10', '2', 'score_id', '考试成绩ID', 'bigint(20)', 'Long', 'scoreId', '1', '1', null, '1', null, null, null, 'EQ', 'input', '', '1', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('11', '2', 'user_id', '用户id(学生id)', 'bigint(20)', 'Long', 'userId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', '2', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('12', '2', 'user_name', '用户姓名', 'varchar(30)', 'String', 'userName', '0', '0', null, '1', '1', '1', '1', 'LIKE', 'input', '', '3', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('13', '2', 'exam_id', '考试类别id', 'bigint(20)', 'Long', 'examId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', '4', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('14', '2', 'exam_name', '考试名称', 'varchar(30)', 'String', 'examName', '0', '0', '1', '1', '1', '1', '1', 'LIKE', 'input', '', '5', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('15', '2', 'score', '考试成绩', 'varchar(30)', 'String', 'score', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', '6', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('16', '2', 'school_year', '学年', 'varchar(90)', 'String', 'schoolYear', '0', '0', null, '1', '1', '1', '1', 'EQ', 'datetime', '', '7', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('17', '2', 'semester', '学期', 'varchar(10)', 'String', 'semester', '0', '0', null, '1', '1', '1', '1', 'EQ', 'select', 'sys_semester', '8', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('18', '2', 'create_by', '创建者', 'varchar(64)', 'String', 'createBy', '0', '0', null, '1', null, null, null, 'EQ', 'input', '', '9', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('19', '2', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', null, '1', null, null, null, 'EQ', 'datetime', '', '10', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('20', '2', 'update_by', '更新者', 'varchar(64)', 'String', 'updateBy', '0', '0', null, '1', '1', null, '1', 'EQ', 'input', '', '11', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('21', '2', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', null, '1', '1', null, '1', 'EQ', 'datetime', '', '12', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-INSERT INTO `gen_table_column` VALUES ('22', '2', 'remark', '备注', 'varchar(500)', 'String', 'remark', '0', '0', null, '1', '1', '1', '1', 'LIKE', 'textarea', '', '13', 'admin', '2020-12-05 07:06:22', null, '2020-12-05 07:10:45');
-
--- ----------------------------
--- Table structure for qrtz_blob_triggers
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_blob_triggers`;
-CREATE TABLE `qrtz_blob_triggers` (
-  `sched_name` varchar(120) NOT NULL,
-  `trigger_name` varchar(200) NOT NULL,
-  `trigger_group` varchar(200) NOT NULL,
-  `blob_data` blob,
-  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
-  CONSTRAINT `QRTZ_BLOB_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_blob_triggers
--- ----------------------------
-
--- ----------------------------
--- Table structure for qrtz_calendars
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_calendars`;
-CREATE TABLE `qrtz_calendars` (
-  `sched_name` varchar(120) NOT NULL,
-  `calendar_name` varchar(200) NOT NULL,
-  `calendar` blob NOT NULL,
-  PRIMARY KEY (`sched_name`,`calendar_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_calendars
--- ----------------------------
-
--- ----------------------------
--- Table structure for qrtz_cron_triggers
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_cron_triggers`;
-CREATE TABLE `qrtz_cron_triggers` (
-  `sched_name` varchar(120) NOT NULL,
-  `trigger_name` varchar(200) NOT NULL,
-  `trigger_group` varchar(200) NOT NULL,
-  `cron_expression` varchar(200) NOT NULL,
-  `time_zone_id` varchar(80) DEFAULT NULL,
-  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
-  CONSTRAINT `QRTZ_CRON_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_cron_triggers
--- ----------------------------
-INSERT INTO `qrtz_cron_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', '0/10 * * * * ?', 'Asia/Shanghai');
-INSERT INTO `qrtz_cron_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', '0/15 * * * * ?', 'Asia/Shanghai');
-INSERT INTO `qrtz_cron_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', '0/20 * * * * ?', 'Asia/Shanghai');
-
--- ----------------------------
--- Table structure for qrtz_fired_triggers
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_fired_triggers`;
-CREATE TABLE `qrtz_fired_triggers` (
-  `sched_name` varchar(120) NOT NULL,
-  `entry_id` varchar(95) NOT NULL,
-  `trigger_name` varchar(200) NOT NULL,
-  `trigger_group` varchar(200) NOT NULL,
-  `instance_name` varchar(200) NOT NULL,
-  `fired_time` bigint(20) NOT NULL,
-  `sched_time` bigint(20) NOT NULL,
-  `priority` int(11) NOT NULL,
-  `state` varchar(16) NOT NULL,
-  `job_name` varchar(200) DEFAULT NULL,
-  `job_group` varchar(200) DEFAULT NULL,
-  `is_nonconcurrent` varchar(1) DEFAULT NULL,
-  `requests_recovery` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`sched_name`,`entry_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_fired_triggers
--- ----------------------------
-
--- ----------------------------
--- Table structure for qrtz_job_details
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_job_details`;
-CREATE TABLE `qrtz_job_details` (
-  `sched_name` varchar(120) NOT NULL,
-  `job_name` varchar(200) NOT NULL,
-  `job_group` varchar(200) NOT NULL,
-  `description` varchar(250) DEFAULT NULL,
-  `job_class_name` varchar(250) NOT NULL,
-  `is_durable` varchar(1) NOT NULL,
-  `is_nonconcurrent` varchar(1) NOT NULL,
-  `is_update_data` varchar(1) NOT NULL,
-  `requests_recovery` varchar(1) NOT NULL,
-  `job_data` blob,
-  PRIMARY KEY (`sched_name`,`job_name`,`job_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_job_details
--- ----------------------------
-INSERT INTO `qrtz_job_details` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', null, 'com.ruoyi.quartz.util.QuartzDisallowConcurrentExecution', '0', '1', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000F5441534B5F50524F504552544945537372001E636F6D2E72756F79692E71756172747A2E646F6D61696E2E5379734A6F6200000000000000010200084C000A636F6E63757272656E747400124C6A6176612F6C616E672F537472696E673B4C000E63726F6E45787072657373696F6E71007E00094C000C696E766F6B6554617267657471007E00094C00086A6F6247726F757071007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C00076A6F624E616D6571007E00094C000D6D697366697265506F6C69637971007E00094C000673746174757371007E000978720027636F6D2E72756F79692E636F6D6D6F6E2E636F72652E646F6D61696E2E42617365456E7469747900000000000000010200074C0008637265617465427971007E00094C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C0006706172616D7371007E00034C000672656D61726B71007E00094C000B73656172636856616C756571007E00094C0008757064617465427971007E00094C000A75706461746554696D6571007E000C787074000561646D696E7372000E6A6176612E7574696C2E44617465686A81014B5974190300007870770800000176273966D078707400007070707400013174000E302F3130202A202A202A202A203F74001172795461736B2E72794E6F506172616D7374000744454641554C547372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078700000000000000001740018E7B3BBE7BB9FE9BB98E8AEA4EFBC88E697A0E58F82EFBC8974000133740001317800);
-INSERT INTO `qrtz_job_details` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', null, 'com.ruoyi.quartz.util.QuartzDisallowConcurrentExecution', '0', '1', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000F5441534B5F50524F504552544945537372001E636F6D2E72756F79692E71756172747A2E646F6D61696E2E5379734A6F6200000000000000010200084C000A636F6E63757272656E747400124C6A6176612F6C616E672F537472696E673B4C000E63726F6E45787072657373696F6E71007E00094C000C696E766F6B6554617267657471007E00094C00086A6F6247726F757071007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C00076A6F624E616D6571007E00094C000D6D697366697265506F6C69637971007E00094C000673746174757371007E000978720027636F6D2E72756F79692E636F6D6D6F6E2E636F72652E646F6D61696E2E42617365456E7469747900000000000000010200074C0008637265617465427971007E00094C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C0006706172616D7371007E00034C000672656D61726B71007E00094C000B73656172636856616C756571007E00094C0008757064617465427971007E00094C000A75706461746554696D6571007E000C787074000561646D696E7372000E6A6176612E7574696C2E44617465686A81014B5974190300007870770800000176273966D078707400007070707400013174000E302F3135202A202A202A202A203F74001572795461736B2E7279506172616D7328277279272974000744454641554C547372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078700000000000000002740018E7B3BBE7BB9FE9BB98E8AEA4EFBC88E69C89E58F82EFBC8974000133740001317800);
-INSERT INTO `qrtz_job_details` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', null, 'com.ruoyi.quartz.util.QuartzDisallowConcurrentExecution', '0', '1', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000F5441534B5F50524F504552544945537372001E636F6D2E72756F79692E71756172747A2E646F6D61696E2E5379734A6F6200000000000000010200084C000A636F6E63757272656E747400124C6A6176612F6C616E672F537472696E673B4C000E63726F6E45787072657373696F6E71007E00094C000C696E766F6B6554617267657471007E00094C00086A6F6247726F757071007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C00076A6F624E616D6571007E00094C000D6D697366697265506F6C69637971007E00094C000673746174757371007E000978720027636F6D2E72756F79692E636F6D6D6F6E2E636F72652E646F6D61696E2E42617365456E7469747900000000000000010200074C0008637265617465427971007E00094C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C0006706172616D7371007E00034C000672656D61726B71007E00094C000B73656172636856616C756571007E00094C0008757064617465427971007E00094C000A75706461746554696D6571007E000C787074000561646D696E7372000E6A6176612E7574696C2E44617465686A81014B5974190300007870770800000176273966D078707400007070707400013174000E302F3230202A202A202A202A203F74003872795461736B2E72794D756C7469706C65506172616D7328277279272C20747275652C20323030304C2C203331362E3530442C203130302974000744454641554C547372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078700000000000000003740018E7B3BBE7BB9FE9BB98E8AEA4EFBC88E5A49AE58F82EFBC8974000133740001317800);
-
--- ----------------------------
--- Table structure for qrtz_locks
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_locks`;
-CREATE TABLE `qrtz_locks` (
-  `sched_name` varchar(120) NOT NULL,
-  `lock_name` varchar(40) NOT NULL,
-  PRIMARY KEY (`sched_name`,`lock_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_locks
--- ----------------------------
-INSERT INTO `qrtz_locks` VALUES ('RuoyiScheduler', 'STATE_ACCESS');
-INSERT INTO `qrtz_locks` VALUES ('RuoyiScheduler', 'TRIGGER_ACCESS');
-
--- ----------------------------
--- Table structure for qrtz_paused_trigger_grps
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_paused_trigger_grps`;
-CREATE TABLE `qrtz_paused_trigger_grps` (
-  `sched_name` varchar(120) NOT NULL,
-  `trigger_group` varchar(200) NOT NULL,
-  PRIMARY KEY (`sched_name`,`trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_paused_trigger_grps
--- ----------------------------
-
--- ----------------------------
--- Table structure for qrtz_scheduler_state
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_scheduler_state`;
-CREATE TABLE `qrtz_scheduler_state` (
-  `sched_name` varchar(120) NOT NULL,
-  `instance_name` varchar(200) NOT NULL,
-  `last_checkin_time` bigint(20) NOT NULL,
-  `checkin_interval` bigint(20) NOT NULL,
-  PRIMARY KEY (`sched_name`,`instance_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_scheduler_state
--- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', '01DC186190337171607407226707', '1607407545140', '15000');
-
--- ----------------------------
--- Table structure for qrtz_simple_triggers
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_simple_triggers`;
-CREATE TABLE `qrtz_simple_triggers` (
-  `sched_name` varchar(120) NOT NULL,
-  `trigger_name` varchar(200) NOT NULL,
-  `trigger_group` varchar(200) NOT NULL,
-  `repeat_count` bigint(20) NOT NULL,
-  `repeat_interval` bigint(20) NOT NULL,
-  `times_triggered` bigint(20) NOT NULL,
-  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
-  CONSTRAINT `QRTZ_SIMPLE_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_simple_triggers
--- ----------------------------
-
--- ----------------------------
--- Table structure for qrtz_simprop_triggers
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_simprop_triggers`;
-CREATE TABLE `qrtz_simprop_triggers` (
-  `sched_name` varchar(120) NOT NULL,
-  `trigger_name` varchar(200) NOT NULL,
-  `trigger_group` varchar(200) NOT NULL,
-  `str_prop_1` varchar(512) DEFAULT NULL,
-  `str_prop_2` varchar(512) DEFAULT NULL,
-  `str_prop_3` varchar(512) DEFAULT NULL,
-  `int_prop_1` int(11) DEFAULT NULL,
-  `int_prop_2` int(11) DEFAULT NULL,
-  `long_prop_1` bigint(20) DEFAULT NULL,
-  `long_prop_2` bigint(20) DEFAULT NULL,
-  `dec_prop_1` decimal(13,4) DEFAULT NULL,
-  `dec_prop_2` decimal(13,4) DEFAULT NULL,
-  `bool_prop_1` varchar(1) DEFAULT NULL,
-  `bool_prop_2` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
-  CONSTRAINT `QRTZ_SIMPROP_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_simprop_triggers
--- ----------------------------
-
--- ----------------------------
--- Table structure for qrtz_triggers
--- ----------------------------
-DROP TABLE IF EXISTS `qrtz_triggers`;
-CREATE TABLE `qrtz_triggers` (
-  `sched_name` varchar(120) NOT NULL,
-  `trigger_name` varchar(200) NOT NULL,
-  `trigger_group` varchar(200) NOT NULL,
-  `job_name` varchar(200) NOT NULL,
-  `job_group` varchar(200) NOT NULL,
-  `description` varchar(250) DEFAULT NULL,
-  `next_fire_time` bigint(20) DEFAULT NULL,
-  `prev_fire_time` bigint(20) DEFAULT NULL,
-  `priority` int(11) DEFAULT NULL,
-  `trigger_state` varchar(16) NOT NULL,
-  `trigger_type` varchar(8) NOT NULL,
-  `start_time` bigint(20) NOT NULL,
-  `end_time` bigint(20) DEFAULT NULL,
-  `calendar_name` varchar(200) DEFAULT NULL,
-  `misfire_instr` smallint(6) DEFAULT NULL,
-  `job_data` blob,
-  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
-  KEY `sched_name` (`sched_name`,`job_name`,`job_group`),
-  CONSTRAINT `QRTZ_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `job_name`, `job_group`) REFERENCES `qrtz_job_details` (`sched_name`, `job_name`, `job_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of qrtz_triggers
--- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', null, '1607407230000', '-1', '5', 'PAUSED', 'CRON', '1607407226000', '0', null, '2', '');
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', null, '1607407230000', '-1', '5', 'PAUSED', 'CRON', '1607407226000', '0', null, '2', '');
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', null, '1607407240000', '-1', '5', 'PAUSED', 'CRON', '1607407226000', '0', null, '2', '');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -556,7 +237,7 @@ CREATE TABLE `sys_logininfor` (
   `msg` varchar(255) DEFAULT '' COMMENT '提示消息',
   `login_time` datetime DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=291 DEFAULT CHARSET=utf8mb4 COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=300 DEFAULT CHARSET=utf8mb4 COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -752,6 +433,15 @@ INSERT INTO `sys_logininfor` VALUES ('287', 'admin', '127.0.0.1', '内网IP', 'C
 INSERT INTO `sys_logininfor` VALUES ('288', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-13 08:56:04');
 INSERT INTO `sys_logininfor` VALUES ('289', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-13 08:56:27');
 INSERT INTO `sys_logininfor` VALUES ('290', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-13 08:56:30');
+INSERT INTO `sys_logininfor` VALUES ('291', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-14 13:30:30');
+INSERT INTO `sys_logininfor` VALUES ('292', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-14 13:41:39');
+INSERT INTO `sys_logininfor` VALUES ('293', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-14 13:51:29');
+INSERT INTO `sys_logininfor` VALUES ('294', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 12:05:24');
+INSERT INTO `sys_logininfor` VALUES ('295', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 12:12:15');
+INSERT INTO `sys_logininfor` VALUES ('296', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-19 13:07:12');
+INSERT INTO `sys_logininfor` VALUES ('297', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 13:07:20');
+INSERT INTO `sys_logininfor` VALUES ('298', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 13:08:30');
+INSERT INTO `sys_logininfor` VALUES ('299', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 13:10:07');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -782,24 +472,18 @@ CREATE TABLE `sys_menu` (
 INSERT INTO `sys_menu` VALUES ('1', '系统管理', '0', '1', '#', '', 'M', '0', '', 'fa fa-gear', 'admin', '2020-12-03 14:10:39', '', null, '系统管理目录');
 INSERT INTO `sys_menu` VALUES ('2', '系统监控', '0', '2', '#', '', 'M', '0', '', 'fa fa-video-camera', 'admin', '2020-12-03 14:10:39', '', null, '系统监控目录');
 INSERT INTO `sys_menu` VALUES ('3', '系统工具', '0', '3', '#', '', 'M', '0', '', 'fa fa-bars', 'admin', '2020-12-03 14:10:39', '', null, '系统工具目录');
-INSERT INTO `sys_menu` VALUES ('4', '若依官网', '0', '4', 'http://ruoyi.vip', 'menuBlank', 'C', '1', '', 'fa fa-location-arrow', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-04 13:19:51', '若依官网地址');
 INSERT INTO `sys_menu` VALUES ('100', '用户管理', '1', '1', '/system/user', '', 'C', '0', 'system:user:view', 'fa fa-user-o', 'admin', '2020-12-03 14:10:39', '', null, '用户管理菜单');
 INSERT INTO `sys_menu` VALUES ('101', '角色管理', '1', '2', '/system/role', '', 'C', '0', 'system:role:view', 'fa fa-user-secret', 'admin', '2020-12-03 14:10:39', '', null, '角色管理菜单');
 INSERT INTO `sys_menu` VALUES ('102', '菜单管理', '1', '3', '/system/menu', '', 'C', '0', 'system:menu:view', 'fa fa-th-list', 'admin', '2020-12-03 14:10:39', '', null, '菜单管理菜单');
 INSERT INTO `sys_menu` VALUES ('103', '部门管理', '1', '4', '/system/dept', '', 'C', '0', 'system:dept:view', 'fa fa-outdent', 'admin', '2020-12-03 14:10:39', '', null, '部门管理菜单');
-INSERT INTO `sys_menu` VALUES ('104', '岗位管理', '1', '5', '/system/post', '', 'C', '0', 'system:post:view', 'fa fa-address-card-o', 'admin', '2020-12-03 14:10:39', '', null, '岗位管理菜单');
 INSERT INTO `sys_menu` VALUES ('105', '字典管理', '1', '6', '/system/dict', '', 'C', '0', 'system:dict:view', 'fa fa-bookmark-o', 'admin', '2020-12-03 14:10:39', '', null, '字典管理菜单');
 INSERT INTO `sys_menu` VALUES ('106', '参数设置', '1', '7', '/system/config', '', 'C', '0', 'system:config:view', 'fa fa-sun-o', 'admin', '2020-12-03 14:10:39', '', null, '参数设置菜单');
-INSERT INTO `sys_menu` VALUES ('107', '通知公告', '1', '8', '/system/notice', '', 'C', '0', 'system:notice:view', 'fa fa-bullhorn', 'admin', '2020-12-03 14:10:39', '', null, '通知公告菜单');
+INSERT INTO `sys_menu` VALUES ('107', '通知公告', '1', '8', '/system/notice', 'menuItem', 'C', '1', 'system:notice:view', 'fa fa-bullhorn', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:05:20', '通知公告菜单');
 INSERT INTO `sys_menu` VALUES ('108', '日志管理', '1', '9', '#', '', 'M', '0', '', 'fa fa-pencil-square-o', 'admin', '2020-12-03 14:10:39', '', null, '日志管理菜单');
 INSERT INTO `sys_menu` VALUES ('109', '在线用户', '2', '1', '/monitor/online', '', 'C', '0', 'monitor:online:view', 'fa fa-user-circle', 'admin', '2020-12-03 14:10:39', '', null, '在线用户菜单');
-INSERT INTO `sys_menu` VALUES ('110', '定时任务', '2', '2', '/monitor/job', '', 'C', '0', 'monitor:job:view', 'fa fa-tasks', 'admin', '2020-12-03 14:10:39', '', null, '定时任务菜单');
-INSERT INTO `sys_menu` VALUES ('111', '数据监控', '2', '3', '/monitor/data', '', 'C', '0', 'monitor:data:view', 'fa fa-bug', 'admin', '2020-12-03 14:10:39', '', null, '数据监控菜单');
-INSERT INTO `sys_menu` VALUES ('112', '服务监控', '2', '4', '/monitor/server', '', 'C', '0', 'monitor:server:view', 'fa fa-server', 'admin', '2020-12-03 14:10:39', '', null, '服务监控菜单');
-INSERT INTO `sys_menu` VALUES ('113', '缓存监控', '2', '5', '/monitor/cache', '', 'C', '0', 'monitor:cache:view', 'fa fa-cube', 'admin', '2020-12-03 14:10:39', '', null, '缓存监控菜单');
-INSERT INTO `sys_menu` VALUES ('114', '表单构建', '3', '1', '/tool/build', '', 'C', '0', 'tool:build:view', 'fa fa-wpforms', 'admin', '2020-12-03 14:10:39', '', null, '表单构建菜单');
-INSERT INTO `sys_menu` VALUES ('115', '代码生成', '3', '2', '/tool/gen', '', 'C', '0', 'tool:gen:view', 'fa fa-code', 'admin', '2020-12-03 14:10:39', '', null, '代码生成菜单');
-INSERT INTO `sys_menu` VALUES ('116', '系统接口', '3', '3', '/tool/swagger', '', 'C', '0', 'tool:swagger:view', 'fa fa-gg', 'admin', '2020-12-03 14:10:39', '', null, '系统接口菜单');
+INSERT INTO `sys_menu` VALUES ('112', '服务监控', '2', '4', '/monitor/server', 'menuItem', 'C', '1', 'monitor:server:view', 'fa fa-server', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:05:35', '服务监控菜单');
+INSERT INTO `sys_menu` VALUES ('113', '缓存监控', '2', '5', '/monitor/cache', 'menuItem', 'C', '1', 'monitor:cache:view', 'fa fa-cube', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:05:51', '缓存监控菜单');
+INSERT INTO `sys_menu` VALUES ('116', '系统接口', '3', '3', '/tool/swagger', 'menuItem', 'C', '1', 'tool:swagger:view', 'fa fa-gg', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:05:43', '系统接口菜单');
 INSERT INTO `sys_menu` VALUES ('500', '操作日志', '108', '1', '/monitor/operlog', '', 'C', '0', 'monitor:operlog:view', 'fa fa-address-book', 'admin', '2020-12-03 14:10:39', '', null, '操作日志菜单');
 INSERT INTO `sys_menu` VALUES ('501', '登录日志', '108', '2', '/monitor/logininfor', '', 'C', '0', 'monitor:logininfor:view', 'fa fa-file-image-o', 'admin', '2020-12-03 14:10:39', '', null, '登录日志菜单');
 INSERT INTO `sys_menu` VALUES ('1000', '用户查询', '100', '1', '#', '', 'F', '0', 'system:user:list', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
@@ -822,11 +506,6 @@ INSERT INTO `sys_menu` VALUES ('1016', '部门查询', '103', '1', '#', '', 'F',
 INSERT INTO `sys_menu` VALUES ('1017', '部门新增', '103', '2', '#', '', 'F', '0', 'system:dept:add', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1018', '部门修改', '103', '3', '#', '', 'F', '0', 'system:dept:edit', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1019', '部门删除', '103', '4', '#', '', 'F', '0', 'system:dept:remove', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1020', '岗位查询', '104', '1', '#', '', 'F', '0', 'system:post:list', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1021', '岗位新增', '104', '2', '#', '', 'F', '0', 'system:post:add', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1022', '岗位修改', '104', '3', '#', '', 'F', '0', 'system:post:edit', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1023', '岗位删除', '104', '4', '#', '', 'F', '0', 'system:post:remove', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1024', '岗位导出', '104', '5', '#', '', 'F', '0', 'system:post:export', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1025', '字典查询', '105', '1', '#', '', 'F', '0', 'system:dict:list', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1026', '字典新增', '105', '2', '#', '', 'F', '0', 'system:dict:add', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1027', '字典修改', '105', '3', '#', '', 'F', '0', 'system:dict:edit', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
@@ -852,18 +531,6 @@ INSERT INTO `sys_menu` VALUES ('1046', '账户解锁', '501', '4', '#', '', 'F',
 INSERT INTO `sys_menu` VALUES ('1047', '在线查询', '109', '1', '#', '', 'F', '0', 'monitor:online:list', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1048', '批量强退', '109', '2', '#', '', 'F', '0', 'monitor:online:batchForceLogout', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1049', '单条强退', '109', '3', '#', '', 'F', '0', 'monitor:online:forceLogout', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1050', '任务查询', '110', '1', '#', '', 'F', '0', 'monitor:job:list', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1051', '任务新增', '110', '2', '#', '', 'F', '0', 'monitor:job:add', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1052', '任务修改', '110', '3', '#', '', 'F', '0', 'monitor:job:edit', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1053', '任务删除', '110', '4', '#', '', 'F', '0', 'monitor:job:remove', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1054', '状态修改', '110', '5', '#', '', 'F', '0', 'monitor:job:changeStatus', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1055', '任务详细', '110', '6', '#', '', 'F', '0', 'monitor:job:detail', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1056', '任务导出', '110', '7', '#', '', 'F', '0', 'monitor:job:export', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1057', '生成查询', '115', '1', '#', '', 'F', '0', 'tool:gen:list', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1058', '生成修改', '115', '2', '#', '', 'F', '0', 'tool:gen:edit', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1059', '生成删除', '115', '3', '#', '', 'F', '0', 'tool:gen:remove', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1060', '预览代码', '115', '4', '#', '', 'F', '0', 'tool:gen:preview', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1061', '生成代码', '115', '5', '#', '', 'F', '0', 'tool:gen:code', '#', 'admin', '2020-12-03 14:10:40', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1076', '成绩管理', '0', '4', '#', 'menuItem', 'M', '0', null, '#', 'admin', '2020-12-13 08:06:18', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1077', '考试类别', '1076', '1', '/system/exam', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-13 08:08:47', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1078', '考试成绩录入', '1076', '2', '/system/score/scoreAdd', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-13 08:10:47', '', null, '');
@@ -882,7 +549,7 @@ CREATE TABLE `sys_notice` (
   `notice_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '公告ID',
   `notice_title` varchar(50) NOT NULL COMMENT '公告标题',
   `notice_type` char(1) NOT NULL COMMENT '公告类型（1通知 2公告）',
-  `notice_content` text DEFAULT NULL COMMENT '公告内容',
+  `notice_content` text COMMENT '公告内容',
   `status` char(1) DEFAULT '0' COMMENT '公告状态（0正常 1关闭）',
   `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
@@ -890,7 +557,7 @@ CREATE TABLE `sys_notice` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`notice_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='通知公告表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='通知公告表';
 
 -- ----------------------------
 -- Records of sys_notice
@@ -899,6 +566,9 @@ INSERT INTO `sys_notice` VALUES ('1', '温馨提醒：2018-07-01 若依新版本
 INSERT INTO `sys_notice` VALUES ('2', '维护通知：2018-07-01 若依系统凌晨维护', '1', '维护内容', '0', 'admin', '2020-12-03 14:10:42', '', null, '管理员');
 INSERT INTO `sys_notice` VALUES ('3', '测试在哪显示', '1', '<p>hello world</p>', '0', 'admin', '2020-12-07 15:20:15', '', null, null);
 INSERT INTO `sys_notice` VALUES ('4', '测试在哪显示啊哈哈哈', '2', '<p>测试在哪显示啊哈哈哈测试在哪显示啊哈哈哈测试在哪显示啊哈哈哈测试在哪显示啊哈哈哈测试在哪显示啊哈哈哈测试在哪显示啊哈哈哈<br></p>', '0', 'admin', '2020-12-07 15:21:09', '', null, null);
+INSERT INTO `sys_notice` VALUES ('5', '哈哈哈哈哈哈', '1', '<p><img src=\"http://localhost:8980/profile/upload/2020/12/14/3aa13af2-fdfd-4d4d-bbf5-89c85b86979c.jpg\" data-filename=\"/profile/upload/2020/12/14/3aa13af2-fdfd-4d4d-bbf5-89c85b86979c.jpg\" style=\"width: 690px;\"><br></p>', '0', 'admin', '2020-12-14 13:36:04', '', null, null);
+INSERT INTO `sys_notice` VALUES ('6', '反倒是不包含地方', '2', '<p>手动阀奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥</p>', '0', 'admin', '2020-12-14 13:43:57', '', null, null);
+INSERT INTO `sys_notice` VALUES ('7', '百度文章摘抄', '1', '<p style=\"margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">据国家民族事务委员会官网12月14日消息：日前，中共中央决定：巴特尔同志不再兼任国家民族事务委员会党组书记职务，陈小江同志任国家民族事务委员会党组书记。</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">巴特尔，蒙古族，1955年2月生，辽宁康平人，1981年12月加入中国共产党，1973年1月参加工作，中央党校研究生学历，经济学硕士。</span></p><div class=\"img-container\" style=\"margin-top: 30px; font-family: arial; font-size: 12px; text-align: start;\"><img class=\"large\" data-loadfunc=\"0\" src=\"https://pics2.baidu.com/feed/35a85edf8db1cb13f81373806a5eeb4992584b39.jpeg?token=0461faa3614e953ec512e2d1100e545a&amp;s=ACC4854E461E35DC1374E53A03003053\" data-loaded=\"0\" style=\"width: 600px; display: block;\"></div><p style=\"margin-top: 26px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p bjh-text-align-center\">资料图</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">他曾长期任职内蒙古，先后担任乌海市委书记，自治区党委常委、纪委书记等职，2008年任内蒙古自治区党委副书记、自治区政府代主席，次年任主席。</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2016年，巴特尔调任国家民族事务委员会主任、党组书记，中央统战部副部长，2018年任十三届全国政协副主席。</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">陈小江生于1962年6月，1984年从武汉水利电力学院毕业后进入中国电力报社，后任中国水利报社总编室主任、中国水利报社总编辑（副局级）等职，1995年出任中国水利报社社长兼总编辑，1996年任中国水利报社社长、党委书记。</span></p><div class=\"img-container\" style=\"margin-top: 30px; font-family: arial; font-size: 12px; text-align: start;\"><img class=\"normal\" width=\"500px\" data-loadfunc=\"0\" src=\"https://pics0.baidu.com/feed/96dda144ad3459827a3de877bdfe8caacaef84b6.jpeg?token=3ca8e0b028f179a9bc75b9387c6749be&amp;s=FB28B1441F40204D44C28A880300F08F\" data-loaded=\"0\" style=\"display: block; margin: 0px auto;\"></div><p style=\"margin-top: 26px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p bjh-text-align-center\">资料图</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1998年，陈小江任水利部直属机关党委常务副书记，2000年卸任中国水利报社社长、党委书记，继续担任水利部直属机关党委常务副书记，其间，于2001年至2004年挂职任甘肃省政府副秘书长、办公厅主任。</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2008年，陈小江任水利部办公厅主任，2009年1月任水利部党组成员兼办公厅主任。</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2011年，陈小江任黄河水利委员会主任、党组书记，任职4年，于2015年调任中央纪委宣传部部长（副部长级）。</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2016年，陈小江调任辽宁省委常委、省纪委书记，1年后，2017年4月调任监察部副部长，同年10月任中央纪委副书记，监察部副部长，2018年任中央纪委副书记、国家监委副主任，至此番调整。</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\"><span class=\"bjh-strong\" style=\"font-size: 18px; font-weight: 700;\">巴特尔简历</span></span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">巴特尔，男，蒙古族，1955年2月生，辽宁康平人，1981年12月加入中国共产党，1973年1月参加工作，中央党校研究生学历，经济学硕士。</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1973—1978年 内蒙古自治区鄂温克旗乌兰牧骑工作</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1978—1980年 海拉尔蒙古族师范学校蒙文大专班学习</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1980—1983年 内蒙古自治区呼伦贝尔盟党校教师(其间：1982.02-1983.07在内蒙古党校师资班学习)</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1983—1984年 共青团内蒙古自治区呼伦贝尔盟委员会书记</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1984—1986年 共青团内蒙古自治区委员会副书记</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1986—1992年 共青团内蒙古自治区委员会书记(其间：1988.02—1988.07在中央党校中青年干部培训班学习;1989.11—1990.11在日本国海外技术者研修协会东京研修中心学习经济管理;1991.04—1992.04挂职任北京市朝阳区区长助理)</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1992—1994年 内蒙古自治区乌海市委副书记(正厅级)</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1994—1994年 内蒙古自治区乌海市委书记</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1994—1998年 内蒙古自治区乌海市委书记、市长</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1998—1999年 内蒙古自治区乌海市委书记</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">（1995—1998年 在复旦大学经济学院政治经济学专业研究生课程进修班学习，获经济学硕士学位）</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1999—1999年 内蒙古自治区乌海市委书记、市人大常委会主任</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1999—2001年 内蒙古自治区党委常委、自治区纪律检查委员会书记</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2001—2008年 内蒙古自治区党委副书记、自治区纪律检查委员会书记</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2008—2009年 内蒙古自治区党委副书记、自治区政府代主席</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2009—2016年 内蒙古自治区党委副书记、自治区政府主席、党组书记</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">（2006—2009年 在中央党校省部级干部在职研究生班政治学专业学习）</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2016—2018年 国家民族事务委员会主任、党组书记，中央统战部副部长</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2018— 十三届全国政协副主席，中央统战部副部长，国家民族事务委员会党组书记、主任</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2020年12月不再兼任国家民族事务委员会党组书记<span class=\"bjh-br\"></span></span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">中共第十五届中央候补委员，十八届、十九届中央委员。中共第十六届、十七届中央纪委委员。</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">第十三届全国政协副主席。</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\"><span class=\"bjh-strong\" style=\"font-size: 18px; font-weight: 700;\">陈小江简历</span></span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">陈小江，男，汉族，1962年6月生，浙江龙游人，1984年8月参加工作，1983年1月入党，武汉水利电力学院电力工程系电力系统及其自动化专业毕业，大学学历，高级编辑。<span class=\"bjh-br\"></span></span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1980.09—1984.08 武汉水利电力学院电力工程系电力系统及其自动化专业学习<span class=\"bjh-br\"></span></span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1984.08—1986.12 中国电力报社编辑</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1986.12—1989.08 中国水利电力报社电力室编辑、副主任，总编室副主任</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1989.08—1993.08 中国水利报社总编室主任</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1993.08—1995.05 中国水利报社总编辑（副局级）（其间：1993.11—1994.01水利部第一期青干班学习）</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1995.05—1996.04 中国水利报社社长兼总编辑</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1996.04—1998.09 中国水利报社社长、党委书记</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">1998.09—2000.03 水利部直属机关党委常务副书记，中国水利报社社长、党委书记</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2000.03—2008.03 水利部直属机关党委常务副书记（其间：2001.11—2004.03挂职任甘肃省政府副秘书长、办公厅主任〈2003.02兼〉）</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2008.03—2009.01 水利部办公厅主任</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2009.01—2011.03 水利部党组成员兼办公厅主任</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2011.03—2015.07 黄河水利委员会主任、党组书记（其间：2015.03—2015.06中央党校省部级干部中国特色社会主义理论体系高级研修班学习）</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2015.07—2016.04 中央纪委宣传部部长（副部长级）</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2016.04—2017.04 辽宁省委常委、省纪委书记</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2017.04—2017.10 监察部副部长</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2017.10—2018.03 中央纪委副书记，监察部副部长</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2018.03— 中央纪委副书记，国家监委副主任</span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">2020年12月任国家民族事务委员会党组书记。<span class=\"bjh-br\"></span></span></p><p style=\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\"><span class=\"bjh-p\">第十九届中央纪委委员、常委、副书记。</span></p>', '0', 'admin', '2020-12-14 14:00:13', '', null, null);
 
 -- ----------------------------
 -- Table structure for sys_oper_log
@@ -922,7 +592,7 @@ CREATE TABLE `sys_oper_log` (
   `error_msg` varchar(2000) DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志记录';
+) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志记录';
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -1051,6 +721,46 @@ INSERT INTO `sys_oper_log` VALUES ('121', '菜单管理', '3', 'com.ruoyi.web.co
 INSERT INTO `sys_oper_log` VALUES ('122', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1063', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:54:27');
 INSERT INTO `sys_oper_log` VALUES ('123', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1073', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:54:32');
 INSERT INTO `sys_oper_log` VALUES ('124', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1072', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-13 08:54:37');
+INSERT INTO `sys_oper_log` VALUES ('125', '通知公告', '1', 'com.ruoyi.web.controller.system.SysNoticeController.addSave()', 'POST', '1', 'admin', '大一', '/system/notice/add', '127.0.0.1', '内网IP', '{\"noticeTitle\":[\"哈哈哈哈哈哈\"],\"noticeType\":[\"1\"],\"noticeContent\":[\"<p><img src=\\\"http://localhost:8980/profile/upload/2020/12/14/3aa13af2-fdfd-4d4d-bbf5-89c85b86979c.jpg\\\" data-filename=\\\"/profile/upload/2020/12/14/3aa13af2-fdfd-4d4d-bbf5-89c85b86979c.jpg\\\" style=\\\"width: 690px;\\\"><br></p>\"],\"status\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-14 13:36:04');
+INSERT INTO `sys_oper_log` VALUES ('126', '通知公告', '1', 'com.ruoyi.web.controller.system.SysNoticeController.addSave()', 'POST', '1', 'admin', '大一', '/system/notice/add', '127.0.0.1', '内网IP', '{\"noticeTitle\":[\"反倒是不包含地方\"],\"noticeType\":[\"2\"],\"noticeContent\":[\"<p>手动阀奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥</p>\"],\"status\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-14 13:43:57');
+INSERT INTO `sys_oper_log` VALUES ('127', '通知公告', '1', 'com.ruoyi.web.controller.system.SysNoticeController.addSave()', 'POST', '1', 'admin', '大一', '/system/notice/add', '127.0.0.1', '内网IP', '{\"noticeTitle\":[\"百度文章摘抄\"],\"noticeType\":[\"1\"],\"noticeContent\":[\"<p style=\\\"margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p\\\">据国家民族事务委员会官网12月14日消息：日前，中共中央决定：巴特尔同志不再兼任国家民族事务委员会党组书记职务，陈小江同志任国家民族事务委员会党组书记。</span></p><p style=\\\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p\\\">巴特尔，蒙古族，1955年2月生，辽宁康平人，1981年12月加入中国共产党，1973年1月参加工作，中央党校研究生学历，经济学硕士。</span></p><div class=\\\"img-container\\\" style=\\\"margin-top: 30px; font-family: arial; font-size: 12px; text-align: start;\\\"><img class=\\\"large\\\" data-loadfunc=\\\"0\\\" src=\\\"https://pics2.baidu.com/feed/35a85edf8db1cb13f81373806a5eeb4992584b39.jpeg?token=0461faa3614e953ec512e2d1100e545a&amp;s=ACC4854E461E35DC1374E53A03003053\\\" data-loaded=\\\"0\\\" style=\\\"width: 600px; display: block;\\\"></div><p style=\\\"margin-top: 26px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p bjh-text-align-center\\\">资料图</span></p><p style=\\\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p\\\">他曾长期任职内蒙古，先后担任乌海市委书记，自治区党委常委、纪委书记等职，2008年任内蒙古自治区党委副书记、自治区政府代主席，次年任主席。</span></p><p style=\\\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p\\\">2016年，巴特尔调任国家民族事务委员会主任、党组书记，中央统战部副部长，2018年任十三届全国政协副主席。</span></p><p style=\\\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p\\\">陈小江生于1962年6月，1984年从武汉水利电力学院毕业后进入中国电力报社，后任中国水利报社总编室主任、中国水利报社总编辑（副局级）等职，1995年出任中国水利报社社长兼总编辑，1996年任中国水利报社', 'null', '1', '\r\n### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'notice_content\' at row 1\r\n### The error may exist in file [D:\\Code\\OtherWork\\RuoYi\\ruoyi-system\\target\\classes\\mapper\\system\\SysNoticeMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.SysNoticeMapper.insertNotice-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into sys_notice (     notice_title,       notice_type,       notice_content,       status,             create_by,      create_time    )values(     ?,       ?,       ?,       ?,             ?,      sysdate()   )\r\n### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'notice_content\' at row 1\n; Data truncation: Data too long for column \'notice_content\' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'notice_content\' at row 1', '2020-12-14 13:59:27');
+INSERT INTO `sys_oper_log` VALUES ('128', '通知公告', '1', 'com.ruoyi.web.controller.system.SysNoticeController.addSave()', 'POST', '1', 'admin', '大一', '/system/notice/add', '127.0.0.1', '内网IP', '{\"noticeTitle\":[\"百度文章摘抄\"],\"noticeType\":[\"1\"],\"noticeContent\":[\"<p style=\\\"margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p\\\">据国家民族事务委员会官网12月14日消息：日前，中共中央决定：巴特尔同志不再兼任国家民族事务委员会党组书记职务，陈小江同志任国家民族事务委员会党组书记。</span></p><p style=\\\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p\\\">巴特尔，蒙古族，1955年2月生，辽宁康平人，1981年12月加入中国共产党，1973年1月参加工作，中央党校研究生学历，经济学硕士。</span></p><div class=\\\"img-container\\\" style=\\\"margin-top: 30px; font-family: arial; font-size: 12px; text-align: start;\\\"><img class=\\\"large\\\" data-loadfunc=\\\"0\\\" src=\\\"https://pics2.baidu.com/feed/35a85edf8db1cb13f81373806a5eeb4992584b39.jpeg?token=0461faa3614e953ec512e2d1100e545a&amp;s=ACC4854E461E35DC1374E53A03003053\\\" data-loaded=\\\"0\\\" style=\\\"width: 600px; display: block;\\\"></div><p style=\\\"margin-top: 26px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p bjh-text-align-center\\\">资料图</span></p><p style=\\\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p\\\">他曾长期任职内蒙古，先后担任乌海市委书记，自治区党委常委、纪委书记等职，2008年任内蒙古自治区党委副书记、自治区政府代主席，次年任主席。</span></p><p style=\\\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p\\\">2016年，巴特尔调任国家民族事务委员会主任、党组书记，中央统战部副部长，2018年任十三届全国政协副主席。</span></p><p style=\\\"margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify; font-family: arial;\\\"><span class=\\\"bjh-p\\\">陈小江生于1962年6月，1984年从武汉水利电力学院毕业后进入中国电力报社，后任中国水利报社总编室主任、中国水利报社总编辑（副局级）等职，1995年出任中国水利报社社长兼总编辑，1996年任中国水利报社', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-14 14:00:13');
+INSERT INTO `sys_oper_log` VALUES ('129', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/104', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"存在子菜单,不允许删除\",\r\n  \"code\" : 301\r\n}', '0', null, '2020-12-19 12:55:58');
+INSERT INTO `sys_oper_log` VALUES ('130', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1020', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"菜单已分配,不允许删除\",\r\n  \"code\" : 301\r\n}', '0', null, '2020-12-19 12:56:04');
+INSERT INTO `sys_oper_log` VALUES ('131', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"1\"],\"roleName\":[\"超级管理员\"],\"roleKey\":[\"admin\"],\"roleSort\":[\"1\"],\"status\":[\"0\"],\"remark\":[\"超级管理员\"],\"menuIds\":[\"\"]}', 'null', '1', '不允许操作超级管理员角色', '2020-12-19 12:56:18');
+INSERT INTO `sys_oper_log` VALUES ('132', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"2\"],\"roleName\":[\"普通角色\"],\"roleKey\":[\"common\"],\"roleSort\":[\"2\"],\"status\":[\"0\"],\"remark\":[\"普通角色\"],\"menuIds\":[\"1,100,1000,1001,1002,1003,1004,1005,1006,101,1007,1008,1009,1010,1011,102,1012,1013,1014,1015,103,1016,1017,1018,1019,105,1025,1026,1027,1028,1029,106,1030,1031,1032,1033,1034,107,1035,1036,1037,1038,108,500,1039,1040,1041,1042,501,1043,1044,1045,1046,2,109,1047,1048,1049,110,1050,1051,1052,1053,1054,1055,1056,111,112,113,3,114,115,1057,1058,1059,1060,1061,116,4\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 12:56:38');
+INSERT INTO `sys_oper_log` VALUES ('133', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1020', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 12:56:53');
+INSERT INTO `sys_oper_log` VALUES ('134', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1021', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 12:57:11');
+INSERT INTO `sys_oper_log` VALUES ('135', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1022', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 12:57:22');
+INSERT INTO `sys_oper_log` VALUES ('136', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1023', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 12:57:30');
+INSERT INTO `sys_oper_log` VALUES ('137', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1024', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 12:57:38');
+INSERT INTO `sys_oper_log` VALUES ('138', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/104', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 12:57:47');
+INSERT INTO `sys_oper_log` VALUES ('139', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/110', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"存在子菜单,不允许删除\",\r\n  \"code\" : 301\r\n}', '0', null, '2020-12-19 13:00:08');
+INSERT INTO `sys_oper_log` VALUES ('140', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1050', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"菜单已分配,不允许删除\",\r\n  \"code\" : 301\r\n}', '0', null, '2020-12-19 13:00:13');
+INSERT INTO `sys_oper_log` VALUES ('141', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"2\"],\"roleName\":[\"普通角色\"],\"roleKey\":[\"common\"],\"roleSort\":[\"2\"],\"status\":[\"0\"],\"remark\":[\"普通角色\"],\"menuIds\":[\"1,100,1000,1001,1002,1003,1004,1005,1006,101,1007,1008,1009,1010,1011,102,1012,1013,1014,1015,103,1016,1017,1018,1019,105,1025,1026,1027,1028,1029,106,1030,1031,1032,1033,1034,107,1035,1036,1037,1038,108,500,1039,1040,1041,1042,501,1043,1044,1045,1046,2,109,1047,1048,1049,111,112,113,3,114,115,1057,1058,1059,1060,1061,116,4\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:00:28');
+INSERT INTO `sys_oper_log` VALUES ('142', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1050', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:00:41');
+INSERT INTO `sys_oper_log` VALUES ('143', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1051', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:00:47');
+INSERT INTO `sys_oper_log` VALUES ('144', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1052', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:00:53');
+INSERT INTO `sys_oper_log` VALUES ('145', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1053', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:00:59');
+INSERT INTO `sys_oper_log` VALUES ('146', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1054', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:01:10');
+INSERT INTO `sys_oper_log` VALUES ('147', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1055', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:01:17');
+INSERT INTO `sys_oper_log` VALUES ('148', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1056', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:01:22');
+INSERT INTO `sys_oper_log` VALUES ('149', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/110', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:01:28');
+INSERT INTO `sys_oper_log` VALUES ('150', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/114', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"菜单已分配,不允许删除\",\r\n  \"code\" : 301\r\n}', '0', null, '2020-12-19 13:02:19');
+INSERT INTO `sys_oper_log` VALUES ('151', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"2\"],\"roleName\":[\"普通角色\"],\"roleKey\":[\"common\"],\"roleSort\":[\"2\"],\"status\":[\"0\"],\"remark\":[\"普通角色\"],\"menuIds\":[\"1,100,1000,1001,1002,1003,1004,1005,1006,101,1007,1008,1009,1010,1011,102,1012,1013,1014,1015,103,1016,1017,1018,1019,105,1025,1026,1027,1028,1029,106,1030,1031,1032,1033,1034,107,1035,1036,1037,1038,108,500,1039,1040,1041,1042,501,1043,1044,1045,1046,2,109,1047,1048,1049,112,113\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:02:44');
+INSERT INTO `sys_oper_log` VALUES ('152', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/114', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:02:59');
+INSERT INTO `sys_oper_log` VALUES ('153', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/4', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:03:04');
+INSERT INTO `sys_oper_log` VALUES ('154', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1057', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:03:15');
+INSERT INTO `sys_oper_log` VALUES ('155', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1058', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:03:20');
+INSERT INTO `sys_oper_log` VALUES ('156', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1059', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:03:25');
+INSERT INTO `sys_oper_log` VALUES ('157', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1060', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:03:31');
+INSERT INTO `sys_oper_log` VALUES ('158', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1061', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:03:37');
+INSERT INTO `sys_oper_log` VALUES ('159', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/115', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:03:42');
+INSERT INTO `sys_oper_log` VALUES ('160', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/111', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:03:59');
+INSERT INTO `sys_oper_log` VALUES ('161', '菜单管理', '2', 'com.ruoyi.web.controller.system.SysMenuController.editSave()', 'POST', '1', 'admin', '大一', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"107\"],\"parentId\":[\"1\"],\"menuType\":[\"C\"],\"menuName\":[\"通知公告\"],\"url\":[\"/system/notice\"],\"target\":[\"menuItem\"],\"perms\":[\"system:notice:view\"],\"orderNum\":[\"8\"],\"icon\":[\"fa fa-bullhorn\"],\"visible\":[\"1\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:05:20');
+INSERT INTO `sys_oper_log` VALUES ('162', '菜单管理', '2', 'com.ruoyi.web.controller.system.SysMenuController.editSave()', 'POST', '1', 'admin', '大一', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"112\"],\"parentId\":[\"2\"],\"menuType\":[\"C\"],\"menuName\":[\"服务监控\"],\"url\":[\"/monitor/server\"],\"target\":[\"menuItem\"],\"perms\":[\"monitor:server:view\"],\"orderNum\":[\"4\"],\"icon\":[\"fa fa-server\"],\"visible\":[\"1\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:05:35');
+INSERT INTO `sys_oper_log` VALUES ('163', '菜单管理', '2', 'com.ruoyi.web.controller.system.SysMenuController.editSave()', 'POST', '1', 'admin', '大一', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"116\"],\"parentId\":[\"3\"],\"menuType\":[\"C\"],\"menuName\":[\"系统接口\"],\"url\":[\"/tool/swagger\"],\"target\":[\"menuItem\"],\"perms\":[\"tool:swagger:view\"],\"orderNum\":[\"3\"],\"icon\":[\"fa fa-gg\"],\"visible\":[\"1\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:05:43');
+INSERT INTO `sys_oper_log` VALUES ('164', '菜单管理', '2', 'com.ruoyi.web.controller.system.SysMenuController.editSave()', 'POST', '1', 'admin', '大一', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"113\"],\"parentId\":[\"2\"],\"menuType\":[\"C\"],\"menuName\":[\"缓存监控\"],\"url\":[\"/monitor/cache\"],\"target\":[\"menuItem\"],\"perms\":[\"monitor:cache:view\"],\"orderNum\":[\"5\"],\"icon\":[\"fa fa-cube\"],\"visible\":[\"1\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:05:51');
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -1102,7 +812,7 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '超级管理员', 'admin', '1', '1', '0', '0', 'admin', '2020-12-03 14:10:39', '', null, '超级管理员');
-INSERT INTO `sys_role` VALUES ('2', '普通角色', 'common', '2', '2', '0', '0', 'admin', '2020-12-03 14:10:39', '', null, '普通角色');
+INSERT INTO `sys_role` VALUES ('2', '普通角色', 'common', '2', '2', '0', '0', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:02:44', '普通角色');
 INSERT INTO `sys_role` VALUES ('3', '教师', 'system:score:*', '3', '1', '0', '0', 'admin', '2020-12-04 13:23:27', 'admin', '2020-12-13 08:16:34', '');
 INSERT INTO `sys_role` VALUES ('4', '学生', 'student', '4', '1', '0', '0', 'admin', '2020-12-05 06:48:03', 'admin', '2020-12-13 08:16:20', '');
 
@@ -1138,25 +848,17 @@ CREATE TABLE `sys_role_menu` (
 -- ----------------------------
 INSERT INTO `sys_role_menu` VALUES ('2', '1');
 INSERT INTO `sys_role_menu` VALUES ('2', '2');
-INSERT INTO `sys_role_menu` VALUES ('2', '3');
-INSERT INTO `sys_role_menu` VALUES ('2', '4');
 INSERT INTO `sys_role_menu` VALUES ('2', '100');
 INSERT INTO `sys_role_menu` VALUES ('2', '101');
 INSERT INTO `sys_role_menu` VALUES ('2', '102');
 INSERT INTO `sys_role_menu` VALUES ('2', '103');
-INSERT INTO `sys_role_menu` VALUES ('2', '104');
 INSERT INTO `sys_role_menu` VALUES ('2', '105');
 INSERT INTO `sys_role_menu` VALUES ('2', '106');
 INSERT INTO `sys_role_menu` VALUES ('2', '107');
 INSERT INTO `sys_role_menu` VALUES ('2', '108');
 INSERT INTO `sys_role_menu` VALUES ('2', '109');
-INSERT INTO `sys_role_menu` VALUES ('2', '110');
-INSERT INTO `sys_role_menu` VALUES ('2', '111');
 INSERT INTO `sys_role_menu` VALUES ('2', '112');
 INSERT INTO `sys_role_menu` VALUES ('2', '113');
-INSERT INTO `sys_role_menu` VALUES ('2', '114');
-INSERT INTO `sys_role_menu` VALUES ('2', '115');
-INSERT INTO `sys_role_menu` VALUES ('2', '116');
 INSERT INTO `sys_role_menu` VALUES ('2', '500');
 INSERT INTO `sys_role_menu` VALUES ('2', '501');
 INSERT INTO `sys_role_menu` VALUES ('2', '1000');
@@ -1179,11 +881,6 @@ INSERT INTO `sys_role_menu` VALUES ('2', '1016');
 INSERT INTO `sys_role_menu` VALUES ('2', '1017');
 INSERT INTO `sys_role_menu` VALUES ('2', '1018');
 INSERT INTO `sys_role_menu` VALUES ('2', '1019');
-INSERT INTO `sys_role_menu` VALUES ('2', '1020');
-INSERT INTO `sys_role_menu` VALUES ('2', '1021');
-INSERT INTO `sys_role_menu` VALUES ('2', '1022');
-INSERT INTO `sys_role_menu` VALUES ('2', '1023');
-INSERT INTO `sys_role_menu` VALUES ('2', '1024');
 INSERT INTO `sys_role_menu` VALUES ('2', '1025');
 INSERT INTO `sys_role_menu` VALUES ('2', '1026');
 INSERT INTO `sys_role_menu` VALUES ('2', '1027');
@@ -1209,18 +906,6 @@ INSERT INTO `sys_role_menu` VALUES ('2', '1046');
 INSERT INTO `sys_role_menu` VALUES ('2', '1047');
 INSERT INTO `sys_role_menu` VALUES ('2', '1048');
 INSERT INTO `sys_role_menu` VALUES ('2', '1049');
-INSERT INTO `sys_role_menu` VALUES ('2', '1050');
-INSERT INTO `sys_role_menu` VALUES ('2', '1051');
-INSERT INTO `sys_role_menu` VALUES ('2', '1052');
-INSERT INTO `sys_role_menu` VALUES ('2', '1053');
-INSERT INTO `sys_role_menu` VALUES ('2', '1054');
-INSERT INTO `sys_role_menu` VALUES ('2', '1055');
-INSERT INTO `sys_role_menu` VALUES ('2', '1056');
-INSERT INTO `sys_role_menu` VALUES ('2', '1057');
-INSERT INTO `sys_role_menu` VALUES ('2', '1058');
-INSERT INTO `sys_role_menu` VALUES ('2', '1059');
-INSERT INTO `sys_role_menu` VALUES ('2', '1060');
-INSERT INTO `sys_role_menu` VALUES ('2', '1061');
 INSERT INTO `sys_role_menu` VALUES ('3', '1076');
 INSERT INTO `sys_role_menu` VALUES ('3', '1078');
 INSERT INTO `sys_role_menu` VALUES ('3', '1081');
@@ -1261,7 +946,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '系统管理员', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-12-13 16:56:31', '2020-12-03 14:10:38', 'admin', '2020-12-03 14:10:38', '', '2020-12-13 08:56:30', '管理员');
+INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '系统管理员', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-12-19 21:10:08', '2020-12-03 14:10:38', 'admin', '2020-12-03 14:10:38', '', '2020-12-19 13:10:07', '管理员');
 INSERT INTO `sys_user` VALUES ('2', '105', 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '8e6d98b90472783cc73c17047ddccf36', '222222', '0', '0', '127.0.0.1', '2020-12-03 14:10:38', '2020-12-03 14:10:38', 'admin', '2020-12-03 14:10:38', '', null, '测试员');
 INSERT INTO `sys_user` VALUES ('3', null, 'male', '男老师', '00', '', '', '0', '', 'e9ea4f438fee5dab8e48f8d21baa1d61', '00693b', '0', '0', '127.0.0.1', '2020-12-04 21:29:46', null, 'admin', '2020-12-04 13:24:00', 'admin', '2020-12-04 15:55:12', '');
 INSERT INTO `sys_user` VALUES ('4', null, 'female', '女老师', '00', '', '', '1', '', '61ec7e2bfb48c9f469ff09c946cfd459', 'f10a3d', '0', '0', '127.0.0.1', '2020-12-13 16:56:05', null, 'admin', '2020-12-05 06:20:34', '', '2020-12-13 08:56:04', null);
@@ -1290,7 +975,7 @@ CREATE TABLE `sys_user_online` (
 -- ----------------------------
 -- Records of sys_user_online
 -- ----------------------------
-INSERT INTO `sys_user_online` VALUES ('d7dcf3de-50d7-444d-9281-dfdd5e57661d', 'admin', '大一', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', 'on_line', '2020-12-13 16:56:29', '2020-12-13 16:56:31', '1800000');
+INSERT INTO `sys_user_online` VALUES ('873f79c4-d6a4-4ae0-8f5b-1086884dcc35', 'admin', '大一', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', 'on_line', '2020-12-19 21:07:14', '2020-12-19 21:10:08', '1800000');
 
 -- ----------------------------
 -- Table structure for sys_user_post
