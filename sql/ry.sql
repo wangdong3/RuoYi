@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50728
 File Encoding         : 65001
 
-Date: 2020-12-19 21:10:29
+Date: 2020-12-20 20:13:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -237,7 +237,7 @@ CREATE TABLE `sys_logininfor` (
   `msg` varchar(255) DEFAULT '' COMMENT '提示消息',
   `login_time` datetime DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=300 DEFAULT CHARSET=utf8mb4 COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=342 DEFAULT CHARSET=utf8mb4 COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -442,6 +442,48 @@ INSERT INTO `sys_logininfor` VALUES ('296', 'admin', '127.0.0.1', '内网IP', 'C
 INSERT INTO `sys_logininfor` VALUES ('297', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 13:07:20');
 INSERT INTO `sys_logininfor` VALUES ('298', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 13:08:30');
 INSERT INTO `sys_logininfor` VALUES ('299', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 13:10:07');
+INSERT INTO `sys_logininfor` VALUES ('300', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 13:12:54');
+INSERT INTO `sys_logininfor` VALUES ('301', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 13:16:58');
+INSERT INTO `sys_logininfor` VALUES ('302', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-19 13:18:41');
+INSERT INTO `sys_logininfor` VALUES ('303', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 13:18:43');
+INSERT INTO `sys_logininfor` VALUES ('304', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 13:23:52');
+INSERT INTO `sys_logininfor` VALUES ('305', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 14:45:42');
+INSERT INTO `sys_logininfor` VALUES ('306', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-19 14:49:35');
+INSERT INTO `sys_logininfor` VALUES ('307', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 14:52:22');
+INSERT INTO `sys_logininfor` VALUES ('308', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 16:45:22');
+INSERT INTO `sys_logininfor` VALUES ('309', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 16:55:21');
+INSERT INTO `sys_logininfor` VALUES ('310', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 16:57:47');
+INSERT INTO `sys_logininfor` VALUES ('311', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 17:03:53');
+INSERT INTO `sys_logininfor` VALUES ('312', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-19 17:04:20');
+INSERT INTO `sys_logininfor` VALUES ('313', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 17:04:40');
+INSERT INTO `sys_logininfor` VALUES ('314', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 17:08:08');
+INSERT INTO `sys_logininfor` VALUES ('315', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-19 17:09:23');
+INSERT INTO `sys_logininfor` VALUES ('316', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 11:54:59');
+INSERT INTO `sys_logininfor` VALUES ('317', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 11:56:44');
+INSERT INTO `sys_logininfor` VALUES ('318', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 11:56:46');
+INSERT INTO `sys_logininfor` VALUES ('319', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 11:57:50');
+INSERT INTO `sys_logininfor` VALUES ('320', 'student1', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '1', '密码输入错误1次', '2020-12-20 11:57:52');
+INSERT INTO `sys_logininfor` VALUES ('321', 'student1', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '1', '密码输入错误2次', '2020-12-20 11:57:57');
+INSERT INTO `sys_logininfor` VALUES ('322', 'student2', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 11:58:02');
+INSERT INTO `sys_logininfor` VALUES ('323', 'student2', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 11:59:25');
+INSERT INTO `sys_logininfor` VALUES ('324', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 11:59:31');
+INSERT INTO `sys_logininfor` VALUES ('325', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 12:00:37');
+INSERT INTO `sys_logininfor` VALUES ('326', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 12:00:39');
+INSERT INTO `sys_logininfor` VALUES ('327', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 12:05:36');
+INSERT INTO `sys_logininfor` VALUES ('328', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 12:05:41');
+INSERT INTO `sys_logininfor` VALUES ('329', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 12:05:45');
+INSERT INTO `sys_logininfor` VALUES ('330', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 12:05:47');
+INSERT INTO `sys_logininfor` VALUES ('331', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 12:09:34');
+INSERT INTO `sys_logininfor` VALUES ('332', 'fenale', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '1', '用户不存在/密码错误', '2020-12-20 12:09:38');
+INSERT INTO `sys_logininfor` VALUES ('333', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 12:09:40');
+INSERT INTO `sys_logininfor` VALUES ('334', 'female', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 12:10:33');
+INSERT INTO `sys_logininfor` VALUES ('335', 'student2', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 12:10:37');
+INSERT INTO `sys_logininfor` VALUES ('336', 'student2', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 12:11:10');
+INSERT INTO `sys_logininfor` VALUES ('337', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 12:11:12');
+INSERT INTO `sys_logininfor` VALUES ('338', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 12:11:25');
+INSERT INTO `sys_logininfor` VALUES ('339', 'student2', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 12:11:29');
+INSERT INTO `sys_logininfor` VALUES ('340', 'student2', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '退出成功', '2020-12-20 12:12:32');
+INSERT INTO `sys_logininfor` VALUES ('341', 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', '0', '登录成功', '2020-12-20 12:12:33');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -470,22 +512,13 @@ CREATE TABLE `sys_menu` (
 -- Records of sys_menu
 -- ----------------------------
 INSERT INTO `sys_menu` VALUES ('1', '系统管理', '0', '1', '#', '', 'M', '0', '', 'fa fa-gear', 'admin', '2020-12-03 14:10:39', '', null, '系统管理目录');
-INSERT INTO `sys_menu` VALUES ('2', '系统监控', '0', '2', '#', '', 'M', '0', '', 'fa fa-video-camera', 'admin', '2020-12-03 14:10:39', '', null, '系统监控目录');
-INSERT INTO `sys_menu` VALUES ('3', '系统工具', '0', '3', '#', '', 'M', '0', '', 'fa fa-bars', 'admin', '2020-12-03 14:10:39', '', null, '系统工具目录');
 INSERT INTO `sys_menu` VALUES ('100', '用户管理', '1', '1', '/system/user', '', 'C', '0', 'system:user:view', 'fa fa-user-o', 'admin', '2020-12-03 14:10:39', '', null, '用户管理菜单');
 INSERT INTO `sys_menu` VALUES ('101', '角色管理', '1', '2', '/system/role', '', 'C', '0', 'system:role:view', 'fa fa-user-secret', 'admin', '2020-12-03 14:10:39', '', null, '角色管理菜单');
 INSERT INTO `sys_menu` VALUES ('102', '菜单管理', '1', '3', '/system/menu', '', 'C', '0', 'system:menu:view', 'fa fa-th-list', 'admin', '2020-12-03 14:10:39', '', null, '菜单管理菜单');
 INSERT INTO `sys_menu` VALUES ('103', '部门管理', '1', '4', '/system/dept', '', 'C', '0', 'system:dept:view', 'fa fa-outdent', 'admin', '2020-12-03 14:10:39', '', null, '部门管理菜单');
 INSERT INTO `sys_menu` VALUES ('105', '字典管理', '1', '6', '/system/dict', '', 'C', '0', 'system:dict:view', 'fa fa-bookmark-o', 'admin', '2020-12-03 14:10:39', '', null, '字典管理菜单');
 INSERT INTO `sys_menu` VALUES ('106', '参数设置', '1', '7', '/system/config', '', 'C', '0', 'system:config:view', 'fa fa-sun-o', 'admin', '2020-12-03 14:10:39', '', null, '参数设置菜单');
-INSERT INTO `sys_menu` VALUES ('107', '通知公告', '1', '8', '/system/notice', 'menuItem', 'C', '1', 'system:notice:view', 'fa fa-bullhorn', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:05:20', '通知公告菜单');
-INSERT INTO `sys_menu` VALUES ('108', '日志管理', '1', '9', '#', '', 'M', '0', '', 'fa fa-pencil-square-o', 'admin', '2020-12-03 14:10:39', '', null, '日志管理菜单');
-INSERT INTO `sys_menu` VALUES ('109', '在线用户', '2', '1', '/monitor/online', '', 'C', '0', 'monitor:online:view', 'fa fa-user-circle', 'admin', '2020-12-03 14:10:39', '', null, '在线用户菜单');
-INSERT INTO `sys_menu` VALUES ('112', '服务监控', '2', '4', '/monitor/server', 'menuItem', 'C', '1', 'monitor:server:view', 'fa fa-server', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:05:35', '服务监控菜单');
-INSERT INTO `sys_menu` VALUES ('113', '缓存监控', '2', '5', '/monitor/cache', 'menuItem', 'C', '1', 'monitor:cache:view', 'fa fa-cube', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:05:51', '缓存监控菜单');
-INSERT INTO `sys_menu` VALUES ('116', '系统接口', '3', '3', '/tool/swagger', 'menuItem', 'C', '1', 'tool:swagger:view', 'fa fa-gg', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:05:43', '系统接口菜单');
-INSERT INTO `sys_menu` VALUES ('500', '操作日志', '108', '1', '/monitor/operlog', '', 'C', '0', 'monitor:operlog:view', 'fa fa-address-book', 'admin', '2020-12-03 14:10:39', '', null, '操作日志菜单');
-INSERT INTO `sys_menu` VALUES ('501', '登录日志', '108', '2', '/monitor/logininfor', '', 'C', '0', 'monitor:logininfor:view', 'fa fa-file-image-o', 'admin', '2020-12-03 14:10:39', '', null, '登录日志菜单');
+INSERT INTO `sys_menu` VALUES ('107', '通知公告', '1', '8', '/system/notice', 'menuItem', 'C', '0', 'system:notice:view', 'fa fa-bullhorn', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-20 12:09:29', '通知公告菜单');
 INSERT INTO `sys_menu` VALUES ('1000', '用户查询', '100', '1', '#', '', 'F', '0', 'system:user:list', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1001', '用户新增', '100', '2', '#', '', 'F', '0', 'system:user:add', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1002', '用户修改', '100', '3', '#', '', 'F', '0', 'system:user:edit', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
@@ -520,17 +553,6 @@ INSERT INTO `sys_menu` VALUES ('1035', '公告查询', '107', '1', '#', '', 'F',
 INSERT INTO `sys_menu` VALUES ('1036', '公告新增', '107', '2', '#', '', 'F', '0', 'system:notice:add', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1037', '公告修改', '107', '3', '#', '', 'F', '0', 'system:notice:edit', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1038', '公告删除', '107', '4', '#', '', 'F', '0', 'system:notice:remove', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1039', '操作查询', '500', '1', '#', '', 'F', '0', 'monitor:operlog:list', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1040', '操作删除', '500', '2', '#', '', 'F', '0', 'monitor:operlog:remove', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1041', '详细信息', '500', '3', '#', '', 'F', '0', 'monitor:operlog:detail', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1042', '日志导出', '500', '4', '#', '', 'F', '0', 'monitor:operlog:export', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1043', '登录查询', '501', '1', '#', '', 'F', '0', 'monitor:logininfor:list', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1044', '登录删除', '501', '2', '#', '', 'F', '0', 'monitor:logininfor:remove', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1045', '日志导出', '501', '3', '#', '', 'F', '0', 'monitor:logininfor:export', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1046', '账户解锁', '501', '4', '#', '', 'F', '0', 'monitor:logininfor:unlock', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1047', '在线查询', '109', '1', '#', '', 'F', '0', 'monitor:online:list', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1048', '批量强退', '109', '2', '#', '', 'F', '0', 'monitor:online:batchForceLogout', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1049', '单条强退', '109', '3', '#', '', 'F', '0', 'monitor:online:forceLogout', '#', 'admin', '2020-12-03 14:10:39', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1076', '成绩管理', '0', '4', '#', 'menuItem', 'M', '0', null, '#', 'admin', '2020-12-13 08:06:18', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1077', '考试类别', '1076', '1', '/system/exam', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-13 08:08:47', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1078', '考试成绩录入', '1076', '2', '/system/score/scoreAdd', 'menuItem', 'C', '0', null, '#', 'admin', '2020-12-13 08:10:47', '', null, '');
@@ -592,7 +614,7 @@ CREATE TABLE `sys_oper_log` (
   `error_msg` varchar(2000) DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志记录';
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志记录';
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -761,6 +783,31 @@ INSERT INTO `sys_oper_log` VALUES ('161', '菜单管理', '2', 'com.ruoyi.web.co
 INSERT INTO `sys_oper_log` VALUES ('162', '菜单管理', '2', 'com.ruoyi.web.controller.system.SysMenuController.editSave()', 'POST', '1', 'admin', '大一', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"112\"],\"parentId\":[\"2\"],\"menuType\":[\"C\"],\"menuName\":[\"服务监控\"],\"url\":[\"/monitor/server\"],\"target\":[\"menuItem\"],\"perms\":[\"monitor:server:view\"],\"orderNum\":[\"4\"],\"icon\":[\"fa fa-server\"],\"visible\":[\"1\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:05:35');
 INSERT INTO `sys_oper_log` VALUES ('163', '菜单管理', '2', 'com.ruoyi.web.controller.system.SysMenuController.editSave()', 'POST', '1', 'admin', '大一', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"116\"],\"parentId\":[\"3\"],\"menuType\":[\"C\"],\"menuName\":[\"系统接口\"],\"url\":[\"/tool/swagger\"],\"target\":[\"menuItem\"],\"perms\":[\"tool:swagger:view\"],\"orderNum\":[\"3\"],\"icon\":[\"fa fa-gg\"],\"visible\":[\"1\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:05:43');
 INSERT INTO `sys_oper_log` VALUES ('164', '菜单管理', '2', 'com.ruoyi.web.controller.system.SysMenuController.editSave()', 'POST', '1', 'admin', '大一', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"113\"],\"parentId\":[\"2\"],\"menuType\":[\"C\"],\"menuName\":[\"缓存监控\"],\"url\":[\"/monitor/cache\"],\"target\":[\"menuItem\"],\"perms\":[\"monitor:cache:view\"],\"orderNum\":[\"5\"],\"icon\":[\"fa fa-cube\"],\"visible\":[\"1\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:05:51');
+INSERT INTO `sys_oper_log` VALUES ('165', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/116', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:13:21');
+INSERT INTO `sys_oper_log` VALUES ('166', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/3', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:13:25');
+INSERT INTO `sys_oper_log` VALUES ('167', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/112', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"菜单已分配,不允许删除\",\r\n  \"code\" : 301\r\n}', '0', null, '2020-12-19 13:13:47');
+INSERT INTO `sys_oper_log` VALUES ('168', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"2\"],\"roleName\":[\"普通角色\"],\"roleKey\":[\"common\"],\"roleSort\":[\"2\"],\"status\":[\"0\"],\"remark\":[\"普通角色\"],\"menuIds\":[\"\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:13:58');
+INSERT INTO `sys_oper_log` VALUES ('169', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/113', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:14:11');
+INSERT INTO `sys_oper_log` VALUES ('170', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/112', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:14:16');
+INSERT INTO `sys_oper_log` VALUES ('171', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1049', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:14:27');
+INSERT INTO `sys_oper_log` VALUES ('172', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1048', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:14:33');
+INSERT INTO `sys_oper_log` VALUES ('173', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1047', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:14:38');
+INSERT INTO `sys_oper_log` VALUES ('174', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/109', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:14:43');
+INSERT INTO `sys_oper_log` VALUES ('175', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/2', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:14:47');
+INSERT INTO `sys_oper_log` VALUES ('176', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1043', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:17:15');
+INSERT INTO `sys_oper_log` VALUES ('177', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1044', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:17:22');
+INSERT INTO `sys_oper_log` VALUES ('178', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1039', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:17:30');
+INSERT INTO `sys_oper_log` VALUES ('179', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1045', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:17:37');
+INSERT INTO `sys_oper_log` VALUES ('180', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1040', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:17:48');
+INSERT INTO `sys_oper_log` VALUES ('181', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1041', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:17:54');
+INSERT INTO `sys_oper_log` VALUES ('182', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1042', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:18:00');
+INSERT INTO `sys_oper_log` VALUES ('183', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/500', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:18:06');
+INSERT INTO `sys_oper_log` VALUES ('184', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/1046', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:18:18');
+INSERT INTO `sys_oper_log` VALUES ('185', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/501', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:18:24');
+INSERT INTO `sys_oper_log` VALUES ('186', '菜单管理', '3', 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'GET', '1', 'admin', '大一', '/system/menu/remove/108', '127.0.0.1', '内网IP', null, '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-19 13:18:29');
+INSERT INTO `sys_oper_log` VALUES ('187', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"1\"],\"roleName\":[\"超级管理员\"],\"roleKey\":[\"admin\"],\"roleSort\":[\"1\"],\"status\":[\"0\"],\"remark\":[\"超级管理员\"],\"menuIds\":[\"1,100,1000,1001,1002,1003,1004,1005,1006,101,1007,1008,1009,1010,1011,102,1012,1013,1014,1015,103,1016,1017,1018,1019,105,1025,1026,1027,1028,1029,106,1030,1031,1032,1033,1034,107,1035,1036,1037,1038,1076,1077,1081,1082\"]}', 'null', '1', '不允许操作超级管理员角色', '2020-12-20 12:04:50');
+INSERT INTO `sys_oper_log` VALUES ('188', '菜单管理', '2', 'com.ruoyi.web.controller.system.SysMenuController.editSave()', 'POST', '1', 'admin', '大一', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"107\"],\"parentId\":[\"1\"],\"menuType\":[\"C\"],\"menuName\":[\"通知公告\"],\"url\":[\"/system/notice\"],\"target\":[\"menuItem\"],\"perms\":[\"system:notice:view\"],\"orderNum\":[\"8\"],\"icon\":[\"fa fa-bullhorn\"],\"visible\":[\"0\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-20 12:09:29');
+INSERT INTO `sys_oper_log` VALUES ('189', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '大一', '/system/role/edit', '127.0.0.1', '内网IP', '{\"roleId\":[\"4\"],\"roleName\":[\"学生\"],\"roleKey\":[\"student\"],\"roleSort\":[\"4\"],\"status\":[\"0\"],\"remark\":[\"\"],\"menuIds\":[\"1076,1084,1085\"]}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-12-20 12:11:23');
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -812,9 +859,9 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '超级管理员', 'admin', '1', '1', '0', '0', 'admin', '2020-12-03 14:10:39', '', null, '超级管理员');
-INSERT INTO `sys_role` VALUES ('2', '普通角色', 'common', '2', '2', '0', '0', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:02:44', '普通角色');
+INSERT INTO `sys_role` VALUES ('2', '普通角色', 'common', '2', '2', '0', '0', 'admin', '2020-12-03 14:10:39', 'admin', '2020-12-19 13:13:58', '普通角色');
 INSERT INTO `sys_role` VALUES ('3', '教师', 'system:score:*', '3', '1', '0', '0', 'admin', '2020-12-04 13:23:27', 'admin', '2020-12-13 08:16:34', '');
-INSERT INTO `sys_role` VALUES ('4', '学生', 'student', '4', '1', '0', '0', 'admin', '2020-12-05 06:48:03', 'admin', '2020-12-13 08:16:20', '');
+INSERT INTO `sys_role` VALUES ('4', '学生', 'student', '4', '1', '0', '0', 'admin', '2020-12-05 06:48:03', 'admin', '2020-12-20 12:11:23', '');
 
 -- ----------------------------
 -- Table structure for sys_role_dept
@@ -846,66 +893,6 @@ CREATE TABLE `sys_role_menu` (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES ('2', '1');
-INSERT INTO `sys_role_menu` VALUES ('2', '2');
-INSERT INTO `sys_role_menu` VALUES ('2', '100');
-INSERT INTO `sys_role_menu` VALUES ('2', '101');
-INSERT INTO `sys_role_menu` VALUES ('2', '102');
-INSERT INTO `sys_role_menu` VALUES ('2', '103');
-INSERT INTO `sys_role_menu` VALUES ('2', '105');
-INSERT INTO `sys_role_menu` VALUES ('2', '106');
-INSERT INTO `sys_role_menu` VALUES ('2', '107');
-INSERT INTO `sys_role_menu` VALUES ('2', '108');
-INSERT INTO `sys_role_menu` VALUES ('2', '109');
-INSERT INTO `sys_role_menu` VALUES ('2', '112');
-INSERT INTO `sys_role_menu` VALUES ('2', '113');
-INSERT INTO `sys_role_menu` VALUES ('2', '500');
-INSERT INTO `sys_role_menu` VALUES ('2', '501');
-INSERT INTO `sys_role_menu` VALUES ('2', '1000');
-INSERT INTO `sys_role_menu` VALUES ('2', '1001');
-INSERT INTO `sys_role_menu` VALUES ('2', '1002');
-INSERT INTO `sys_role_menu` VALUES ('2', '1003');
-INSERT INTO `sys_role_menu` VALUES ('2', '1004');
-INSERT INTO `sys_role_menu` VALUES ('2', '1005');
-INSERT INTO `sys_role_menu` VALUES ('2', '1006');
-INSERT INTO `sys_role_menu` VALUES ('2', '1007');
-INSERT INTO `sys_role_menu` VALUES ('2', '1008');
-INSERT INTO `sys_role_menu` VALUES ('2', '1009');
-INSERT INTO `sys_role_menu` VALUES ('2', '1010');
-INSERT INTO `sys_role_menu` VALUES ('2', '1011');
-INSERT INTO `sys_role_menu` VALUES ('2', '1012');
-INSERT INTO `sys_role_menu` VALUES ('2', '1013');
-INSERT INTO `sys_role_menu` VALUES ('2', '1014');
-INSERT INTO `sys_role_menu` VALUES ('2', '1015');
-INSERT INTO `sys_role_menu` VALUES ('2', '1016');
-INSERT INTO `sys_role_menu` VALUES ('2', '1017');
-INSERT INTO `sys_role_menu` VALUES ('2', '1018');
-INSERT INTO `sys_role_menu` VALUES ('2', '1019');
-INSERT INTO `sys_role_menu` VALUES ('2', '1025');
-INSERT INTO `sys_role_menu` VALUES ('2', '1026');
-INSERT INTO `sys_role_menu` VALUES ('2', '1027');
-INSERT INTO `sys_role_menu` VALUES ('2', '1028');
-INSERT INTO `sys_role_menu` VALUES ('2', '1029');
-INSERT INTO `sys_role_menu` VALUES ('2', '1030');
-INSERT INTO `sys_role_menu` VALUES ('2', '1031');
-INSERT INTO `sys_role_menu` VALUES ('2', '1032');
-INSERT INTO `sys_role_menu` VALUES ('2', '1033');
-INSERT INTO `sys_role_menu` VALUES ('2', '1034');
-INSERT INTO `sys_role_menu` VALUES ('2', '1035');
-INSERT INTO `sys_role_menu` VALUES ('2', '1036');
-INSERT INTO `sys_role_menu` VALUES ('2', '1037');
-INSERT INTO `sys_role_menu` VALUES ('2', '1038');
-INSERT INTO `sys_role_menu` VALUES ('2', '1039');
-INSERT INTO `sys_role_menu` VALUES ('2', '1040');
-INSERT INTO `sys_role_menu` VALUES ('2', '1041');
-INSERT INTO `sys_role_menu` VALUES ('2', '1042');
-INSERT INTO `sys_role_menu` VALUES ('2', '1043');
-INSERT INTO `sys_role_menu` VALUES ('2', '1044');
-INSERT INTO `sys_role_menu` VALUES ('2', '1045');
-INSERT INTO `sys_role_menu` VALUES ('2', '1046');
-INSERT INTO `sys_role_menu` VALUES ('2', '1047');
-INSERT INTO `sys_role_menu` VALUES ('2', '1048');
-INSERT INTO `sys_role_menu` VALUES ('2', '1049');
 INSERT INTO `sys_role_menu` VALUES ('3', '1076');
 INSERT INTO `sys_role_menu` VALUES ('3', '1078');
 INSERT INTO `sys_role_menu` VALUES ('3', '1081');
@@ -913,6 +900,7 @@ INSERT INTO `sys_role_menu` VALUES ('3', '1082');
 INSERT INTO `sys_role_menu` VALUES ('3', '1083');
 INSERT INTO `sys_role_menu` VALUES ('4', '1076');
 INSERT INTO `sys_role_menu` VALUES ('4', '1084');
+INSERT INTO `sys_role_menu` VALUES ('4', '1085');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -946,12 +934,12 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '系统管理员', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-12-19 21:10:08', '2020-12-03 14:10:38', 'admin', '2020-12-03 14:10:38', '', '2020-12-19 13:10:07', '管理员');
+INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '系统管理员', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-12-20 20:12:34', '2020-12-03 14:10:38', 'admin', '2020-12-03 14:10:38', '', '2020-12-20 12:12:33', '管理员');
 INSERT INTO `sys_user` VALUES ('2', '105', 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '8e6d98b90472783cc73c17047ddccf36', '222222', '0', '0', '127.0.0.1', '2020-12-03 14:10:38', '2020-12-03 14:10:38', 'admin', '2020-12-03 14:10:38', '', null, '测试员');
 INSERT INTO `sys_user` VALUES ('3', null, 'male', '男老师', '00', '', '', '0', '', 'e9ea4f438fee5dab8e48f8d21baa1d61', '00693b', '0', '0', '127.0.0.1', '2020-12-04 21:29:46', null, 'admin', '2020-12-04 13:24:00', 'admin', '2020-12-04 15:55:12', '');
-INSERT INTO `sys_user` VALUES ('4', null, 'female', '女老师', '00', '', '', '1', '', '61ec7e2bfb48c9f469ff09c946cfd459', 'f10a3d', '0', '0', '127.0.0.1', '2020-12-13 16:56:05', null, 'admin', '2020-12-05 06:20:34', '', '2020-12-13 08:56:04', null);
+INSERT INTO `sys_user` VALUES ('4', null, 'female', '女老师', '00', '', '', '1', '', '61ec7e2bfb48c9f469ff09c946cfd459', 'f10a3d', '0', '0', '127.0.0.1', '2020-12-20 20:09:41', null, 'admin', '2020-12-05 06:20:34', '', '2020-12-20 12:09:40', null);
 INSERT INTO `sys_user` VALUES ('5', '110', 'student1', '男学生', '00', '', '', '0', '', 'e2311e77e5fe2695c908aca54a9decb5', '3bfac4', '0', '0', '127.0.0.1', '2020-12-07 16:15:06', null, 'admin', '2020-12-05 06:49:36', 'admin', '2020-12-07 16:15:06', '');
-INSERT INTO `sys_user` VALUES ('6', '110', 'student2', '女同学', '00', '', '', '1', '', '494510fc2458813babf786ce2809b314', '731520', '0', '0', '127.0.0.1', '2020-12-13 16:41:53', null, 'admin', '2020-12-05 07:55:29', 'admin', '2020-12-13 08:41:51', '');
+INSERT INTO `sys_user` VALUES ('6', '110', 'student2', '女同学', '00', '', '', '1', '', '494510fc2458813babf786ce2809b314', '731520', '0', '0', '127.0.0.1', '2020-12-20 20:11:30', null, 'admin', '2020-12-05 07:55:29', 'admin', '2020-12-20 12:11:29', '');
 
 -- ----------------------------
 -- Table structure for sys_user_online
@@ -975,7 +963,7 @@ CREATE TABLE `sys_user_online` (
 -- ----------------------------
 -- Records of sys_user_online
 -- ----------------------------
-INSERT INTO `sys_user_online` VALUES ('873f79c4-d6a4-4ae0-8f5b-1086884dcc35', 'admin', '大一', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', 'on_line', '2020-12-19 21:07:14', '2020-12-19 21:10:08', '1800000');
+INSERT INTO `sys_user_online` VALUES ('dfa7bbd1-bfbf-4d14-9966-cc892ace039c', 'admin', '大一', '127.0.0.1', '内网IP', 'Chrome 8', 'Windows 10', 'on_line', '2020-12-20 20:12:33', '2020-12-20 20:12:34', '1800000');
 
 -- ----------------------------
 -- Table structure for sys_user_post
